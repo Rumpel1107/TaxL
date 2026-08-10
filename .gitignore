@@ -1,0 +1,13 @@
+# Dev Data
+docs/context/
+data/
+CLAUDE.md
+
+# Build
+target/
+
+# IDE / SO
+.idea/
+*.iml
+.vscode/
+.DS_Store
