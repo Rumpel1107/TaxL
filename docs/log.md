@@ -1,0 +1,56 @@
+# Log
+
+> **What goes in this document:** what happened, dated, newest first. Append-only.
+>
+> Not here: why a decision was taken (`docs/decisions.md`), what is pending
+> (`docs/roadmap.md`). No taxpayer figures — golden-test values stay in the local fixture,
+> never in this repository (`memory/constitution.md`, principle 3).
+
+## 2026-08-24 — Documentation reorganized around `/method`
+
+The repository was carrying four documents inside `PLAN.md` and three competing methodologies.
+Split into `PLAN.md` (framing), `docs/roadmap.md`, `docs/decisions.md`, this log, and
+`docs/domain/rules.md`. The Excel-era user stories moved to `docs/reference/backlog-p0.md` as
+input material for the future engine spec. Process now lives only in the `/method` skill.
+
+Six rules were contributed back to `/method` from this session: a file earns its existence when
+you can say in one sentence what goes in it and what stays out; the reason roadmap, decisions and
+log separate is that their read moments differ; a new **Phase 0 — Inventory** for work that
+inherits material; the interview rules that make phases 0–4 checkable; an *artifacts must agree*
+gate before Build; the `[NEEDS CLARIFICATION]` marker across all templates; and decisions carrying
+an id and a status, never edited once accepted.
+
+The first use of the marker was on this repository's own roadmap: the AG2025 filing deadline had
+been written as a fact when it was an inference from a table, never confirmed.
+
+Found while reorganizing: the registry `R1–R14` was entirely unverified on paper while
+`docs/reference/Investigacion_Renta.md` had already closed nine of those rules against primary
+sources — the research was done and the registry never learned about it. Five rules the engine
+already implements were missing from the registry altogether and were added as `R15–R19`.
+
+## 2026-08-10 — Discovery closed, constitution written
+
+The discovery sessions on Claude.ai ended with the data-handling and product-behaviour decisions
+now recorded in `docs/decisions.md` (A1–D3). The ten project principles were written to
+`memory/constitution.md`. Session context was exported to `docs/context/CONTEXT.md` for transfer
+into Claude Code — a temporary file, to be emptied into its destinations and deleted.
+
+## 2026-07 → 2026-08 — Excel calculation engine built and validated
+
+The deterministic engine was built in Excel for the asalariado profile and reproduces three real
+returns to the peso (two filed, one draft pending the contadora's review). These are the golden
+tests. **M1 met** (zero difference on key lines) and **M3 met** (switching tax year touches only
+the Parameters sheet). **M2 is not verified** and **M5 has not been run.**
+
+Reconstructing each year from original source documents rather than from the previous year's
+results surfaced several findings on already-filed returns, all tax-neutral, and one anticipo
+figure that no reading of art. 807 reproduces. Both are with the contadora.
+
+Two regressions appeared while rebuilding the 2025 file by copying the previous one — an AFC cap
+and a dependants cap broke silently. That is the origin of the golden-test rule in the
+constitution.
+
+## 2026-07-06 — Business model merged into the plan
+
+A session on monetization produced the free → X → Y funnel, moved exógena parsing from P3 to P2,
+and established the owner tags. `PLAN.md` went to v0.3.
