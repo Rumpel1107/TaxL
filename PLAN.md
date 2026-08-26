@@ -7,7 +7,7 @@
 > (`docs/log.md`), the tax rules (`docs/domain/`). Process — phases and gates — is the `/method`
 > skill.
 >
-> Owner: Rumpel · Last updated: 2026-08-24
+> Owner: Rumpel · Last updated: 2026-08-26
 
 ---
 
@@ -68,7 +68,7 @@ later phase (high value, high error consequence); communicated in X as "coming s
 
 | # | Metric | MVP Target |
 |---|--------|------------|
-| M1 | Match with real tax returns | **$0** difference on key lines of Form 210, for my last **3** filed returns |
+| M1 | Match with real tax returns | **$0** difference on key lines of Form 210, across the **3** reference returns held in the local fixture |
 | M2 | Test case coverage | 100% of the worked examples from the reference webinar (employee and self-employed) reproduced correctly |
 | M3 | Parameterization | The engine switches tax year by editing **only** the Parameters sheet |
 | M4 | Traceability | Every Output value can be traced back to an Input cell or a parameter |
@@ -130,7 +130,7 @@ later phase (high value, high error consequence); communicated in X as "coming s
 | R-5 | **Exógena depuration fails (false income)** | High | High | R11–R14 fichas calibrated against real exógena↔declaration pairs; conservative framing; show ranges when ambiguous; manual correction always available | Free estimate deviates grossly from a known real return |
 | R-6 | **Third-party personal data (Law 1581)** | Medium | High | Consent/security designed from P2; educational positioning | First user other than myself |
 | R-7 | **TY2025 exógena not yet available (~July)** | High | Low | Work P0 with 2024 data / own past returns | Calendar |
-| R-8 | **Over-engineering the methodology** | Medium | Medium | Lightweight Kanban; weekly review; no heavy ceremonies | I stop updating the board |
+| R-8 | **Over-engineering the methodology** | Medium | Medium | Lightweight Kanban; weekly review; no heavy ceremonies | The board stops being updated |
 | R-9 | **Legal boundary: "estimation tool" vs "tax advisory"** *(new)* | Medium | High | Research before charging (blocks tier Y; informs X disclaimer) | Drafting the X paywall copy |
 | R-10 | **Extreme seasonality** *(new)* | High | Medium | Aug–Oct peak dates the go-to-market backwards from R10 (calendar rule); off-season demand ≈ 0 | Product ready after the season's peak |
 

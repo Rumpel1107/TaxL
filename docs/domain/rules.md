@@ -8,8 +8,9 @@
 
 ## What "closed" means
 
-A rule is closed when its **ficha** exists: the rule in the owner's own words, a numeric example,
-and a test case in the validation suite. Reading the source is not closing it.
+A rule is closed when its **ficha** exists: the rule in the owner's own words, an illustrative
+numeric example, and a test case in the validation suite. Reading the source is not closing it.
+Ficha examples are invented figures, never values taken from a real return (D31).
 
 | Status | Meaning |
 |---|---|
@@ -17,7 +18,7 @@ and a test case in the validation suite. Reading the source is not closing it.
 | 🟡 | Primary source located and verified, ficha not yet written |
 | ⬜ | Open — source not verified, or blocked |
 
-**As of 2026-08-24 no ficha file exists yet.** Nine rules are at 🟡 because
+**As of 2026-08-24 no ficha file exists yet.** Ten rules are at 🟡 because
 `docs/reference/Investigacion_Renta.md` closed their primary sources; the writing step is what is
 missing. Fichas live in `docs/domain/fichas/`, a folder created with the first one.
 
@@ -66,7 +67,7 @@ exógena↔return pairs held locally.
 These are why a 🟡 is not a ✅. Each must be resolved or accepted in writing before its ficha closes.
 
 - **R9 — blocked.** The anticipo method is undecided: straight 75% vs biannual average. Neither
-  reproduces the 454,000 actually paid for AG2024. Question is with the contadora.
+  reproduces the amount actually paid in the reference case. The question is with a professional.
 - **R18 — doctrine, not doctrine-numbered.** FSP as INCRNGO rests on it being legally part of the
   mandatory pension contribution under art. 55. No numbered DIAN Concepto was located.
 - **R8 — one decree to confirm.** The AG 2025 reajuste fiscal of 5,81% comes from Decreto 0449 de

@@ -57,6 +57,6 @@
 
 **US-P0-008 · Validation Test Suite** `[R]`
 *As* the product owner, *I want* a set of test cases with expected results, *so that* I can confirm the engine is reliable.
-- AC1: Includes my **3** real filed tax returns.
+- AC1: Includes the **3** real reference returns, whose values are held in the local fixture.
 - AC2: Includes the webinar's worked examples (employee → $0; refund 1,886,000 COP; self-employed ×3; capital income; non-labor; pensions; occasional gains).
 - AC3: Pass criterion: $0 difference on key lines.
