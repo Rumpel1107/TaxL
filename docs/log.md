@@ -6,7 +6,25 @@
 > (`docs/roadmap.md`). No taxpayer figures — golden-test values stay in the local fixture,
 > never in this repository (`memory/constitution.md`, principle 3).
 
-## 2026-08-26 — Privacy line drawn, repository scrubbed
+## 2026-08-27 — `CONTEXT.md` emptied and deleted
+
+The session export carried ten sections. Four were already absorbed and died with the file: the
+discovery decisions were D09–D20, D25 and D26; the ficha status was already in
+`docs/domain/rules.md`; the next-steps list and the privacy note had been superseded by the
+roadmap and by principle 11.
+
+Two became repository documents: `docs/reference/spec-001-outline.md` and
+`docs/reference/calc-model.md`. The second was first written as a description of the Excel
+workbook and rejected on the grounds that the workbook never enters the repository, so no reader
+can see what it describes. Rewritten as the model the code must implement — parameters versioned
+by year, inputs carrying value plus support plus Form 210 line, the five-step depuration pipeline,
+the 220→210 map — it stands on its own. The tool-specific quirks and the regression history were
+dropped: the first dies with the spreadsheet, the second was already in this log.
+
+The remaining four sections are real taxpayer data and stayed local, as
+`docs/context/reference-case.md`.
+
+## 2026-08-27 — Privacy line drawn, repository scrubbed
 
 Nothing committed may identify the owner or a tester; everything written in the repository is an
 illustrative example, even when modelled on a real case (D31). Personal tax administration is not

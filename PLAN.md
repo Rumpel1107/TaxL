@@ -7,7 +7,7 @@
 > (`docs/log.md`), the tax rules (`docs/domain/`). Process — phases and gates — is the `/method`
 > skill.
 >
-> Owner: Rumpel · Last updated: 2026-08-26
+> Owner: Rumpel · Last updated: 2026-08-27
 
 ---
 
