@@ -8,19 +8,18 @@
 
 ## What "closed" means
 
-A rule is closed when its **ficha** exists: the rule in the owner's own words, an illustrative
-numeric example, and a test case in the validation suite. Reading the source is not closing it.
-Ficha examples are invented figures, never values taken from a real return (D31).
+A rule is closed when its **rule sheet** exists: values, source, formula, the conditions the engine
+must respect, and a test case in the validation suite. Reading the source is not closing it.
+Rule sheet examples are invented figures, never values taken from a real return (D31).
 
 | Status | Meaning |
 |---|---|
-| ✅ | Ficha written: own words + numeric example + test case |
-| 🟡 | Primary source located and verified, ficha not yet written |
+| ✅ | Rule sheet written: values + source + formula + conditions + test case |
+| 🟡 | Primary source located and verified, rule sheet not yet written |
 | ⬜ | Open — source not verified, or blocked |
 
-**As of 2026-08-24 no ficha file exists yet.** Ten rules are at 🟡 because
-`docs/reference/Investigacion_Renta.md` closed their primary sources; the writing step is what is
-missing. Fichas live in `docs/domain/fichas/`, a folder created with the first one.
+The rules at 🟡 have their primary source closed; the writing step is what is missing. Rule sheets
+live in `docs/domain/rule-sheets/`.
 
 ## Calculation rules
 
@@ -33,8 +32,8 @@ missing. Fichas live in `docs/domain/fichas/`, a folder created with the first o
 | R5 | Dependents, both modalities + caps | E.T. art. 387 inc. 2 and art. 336 num. 3 inc. 2; Decreto 2231/2023 | 🟡 |
 | R6 | Individual caps: prepaid health, mortgage interest, AFC/voluntary pension, GMF | E.T. arts. 387, 119, 126-1, 126-4, 115; DIAN Concepto 3591/2025 | 🟡 |
 | R7 | Global 40% / 1.340 UVT cap; capped vs uncapped items | E.T. art. 336 num. 3 | 🟡 |
-| R8 | Art. 241 progressive table + reajuste fiscal | E.T. art. 241 (Ley 2010/2019 art. 34); art. 70; Decretos 128/2024, 174/2025, 0449/2026 | 🟡 |
-| R9 | Withholdings; anticipo; balance due vs refund | E.T. arts. 383, 807; Form 210 | ⬜ |
+| R8 | Art. 241 progressive table + fiscal adjustment | E.T. art. 241 (Ley 2010/2019 art. 34); art. 70; Decretos 128/2024, 174/2025, 0449/2026 | 🟡 |
+| R9 | Withholdings; advance payment; balance due vs refund | E.T. arts. 383, 807; Form 210 | ⬜ |
 | R10 | Filing calendar by ID digits | Decreto 2229/2023 (permanent calendar) | 🟡 |
 
 ## Rules the engine already implements, added after the registry was first written
@@ -44,8 +43,8 @@ engine actually does.
 
 | # | Rule | Primary source | Status |
 |---|---|---|---|
-| R15 | Cesantías exentas, gradual table | E.T. art. 206 num. 4 | ⬜ |
-| R16 | Alimentación payments are not income under both monthly UVT conditions | E.T. art. 387-1 | 🟡 |
+| R15 | Exempt severance pay, gradual table | E.T. art. 206 num. 4 | 🟡 |
+| R16 | Meal allowance payments are not income under both monthly UVT conditions | E.T. art. 387-1 | 🟡 |
 | R17 | AFC contingent withholding mechanics | E.T. art. 126-4 | ⬜ |
 | R18 | Fondo de Solidaridad Pensional as INCRNGO | E.T. art. 55 — **doctrine only** | ⬜ |
 | R19 | Sale of primary residence, exemption | E.T. art. 311-1 — out of MVP scope | ⬜ |
@@ -64,23 +63,23 @@ exógena↔return pairs held locally.
 
 ## Open flags on otherwise verified rules
 
-These are why a 🟡 is not a ✅. Each must be resolved or accepted in writing before its ficha closes.
+These are why a 🟡 is not a ✅. Each must be resolved or accepted in writing before its rule sheet closes.
 
-- **R9 — blocked.** The anticipo method is undecided: straight 75% vs biannual average. Neither
+- **R9 — blocked.** The advance payment method is undecided: straight 75% vs biannual average. Neither
   reproduces the amount actually paid in the reference case. The question is with a professional.
 - **R18 — doctrine, not doctrine-numbered.** FSP as INCRNGO rests on it being legally part of the
   mandatory pension contribution under art. 55. No numbered DIAN Concepto was located.
-- **R8 — one decree to confirm.** The AG 2025 reajuste fiscal of 5,81% comes from Decreto 0449 de
+- **R8 — one decree to confirm.** The TY2025 fiscal adjustment of 5,81% comes from Decreto 0449 de
   2026, issued close to the research date; number and date need checking against the Diario Oficial.
-  It affects activos fijos / ganancias ocasionales, not the ordinary asalariado depuration.
-- **R10 — one date to confirm.** The AG 2025 filing window ends 26-oct-2026 by business-day count,
+  It affects fixed assets / occasional gains, not the ordinary employee depuration.
+- **R10 — one date to confirm.** The TY2025 filing window ends 26-oct-2026 by business-day count,
   against 24-oct in the two prior seasons. Confirm against the definitive DIAN 2026 calendar before
   hard-coding.
-- **R7 — a published typo to ignore.** One secondary source printed the AG 2023 ceiling as
+- **R7 — a published typo to ignore.** One secondary source printed the TY2023 ceiling as
   $53.832.000; the arithmetically correct figure is 1.340 × $42.412 = **$56.832.000**.
 
 ## Rules whose reading the owner already closed in session
 
-Verified personally during the Excel sessions, ficha still to be written: E.T. art. 55 (RAIS 25% /
+Verified personally during the Excel sessions, rule sheet still to be written: E.T. art. 55 (RAIS 25% /
 2.500 UVT), art. 126-1 (the 30% cap covers voluntary pension + AFC only, and its parágrafo 3 is
-pre-2013 transitional), art. 387-1 (alimentación, both monthly conditions).
+pre-2013 transitional), art. 387-1 (meal allowance, both monthly conditions).

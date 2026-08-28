@@ -23,7 +23,8 @@ unrecognized data (D14); duplicates across reporting entities (D11); visibly inc
 (D12). Each states what the system detects, what the user sees, and what the user can do.
 
 **5 · Acceptance criteria.** Given/When/Then. Example shapes: given an exógena where a trust
-reports a mortgage disbursement, the estimate must not count it as income; given honorarios in the
+reports a mortgage disbursement, the estimate must not count it as income; given professional fees
+in the
 file, the system alerts and produces no figure.
 
 **6 · Open questions to resolve before writing.** Does the conservative estimate include the 25%

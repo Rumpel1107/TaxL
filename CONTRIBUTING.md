@@ -32,6 +32,7 @@ Every work item carries one. They mark who owns the outcome, not who types.
 
 - **English** for code, names, comments and project documents.
 - **English is the default product language; Spanish is a supported option** selected per user. All user-facing text MUST go through strings — never hardcode user-facing text in any language.
+- **In project documents, Spanish survives only in three places:** acronyms (UVT, DIAN, INCRNGO, E.T.), normative citations (`art. 336 E.T.`, `Ley 2277 de 2022`, `DIAN Res. 000120 de 2024`), and `exógena`, which has no equivalent. The glossary may carry the Spanish original in parentheses. Every other domain term is English — general schedule, tax year, exempt income, severance pay, advance payment. Figures keep Colombian format (`1.340`, `$56.832.000`).
 
 ## Confidential material
 

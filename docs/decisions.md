@@ -24,7 +24,7 @@ alternative, the cell says **not recorded** rather than a reconstruction.
 | # | Date | Decision | Rejected alternative | Why | Status |
 |---|---|---|---|---|---|
 | D01 | — | North Star = "Understand and verify before filing" | not recorded | The DIAN already fills the form; the gap is understanding it | `accepted` |
-| D02 | — | MVP profile = employee (asalariado) | Covering several taxpayer profiles at once | Cut by profile to keep the riskiest logic small | `accepted` |
+| D02 | — | MVP profile = employee | Covering several taxpayer profiles at once | Cut by profile to keep the riskiest logic small | `accepted` |
 | D03 | — | Validation suite = 3 real reference returns + webinar examples | Synthetic test cases | Free ground truth that is already known to be correct | `accepted` |
 | D04 | 2026-07-06 | Monetization funnel: free ceiling estimate → X (full liquidation) → Y (next-year recommendations) | Single paid product | The free estimate is deliberately the ceiling, so X sells "see how much you can lower it" | `accepted` |
 | D05 | 2026-07-06 | Product entry point = exógena file upload | Manual data entry as the entry point | Nobody enters their data with discipline; manual entry stays as fallback | `accepted` |
@@ -33,18 +33,19 @@ alternative, the cell says **not recorded** rather than a reconstruction.
 | D08 | 2026-07-06 | No committed deadline; Tabris and P0 advance in parallel | Fixing a date for the 2026 season | Entering mid-season 2026 is acceptable for early validation | `accepted` |
 | D09 | 2026-08-10 | C2 — MVP automates one reference case exactly, plus out-of-scope detection | Speculative coverage of other profiles | Coverage expands case by case as real scenarios appear | `accepted` |
 | D10 | 2026-08-10 | C3 — Parameters editable by non-technical users (accountants) as a first-class feature | Parameters as config files | An accountant must be able to update a legal value without a developer | `accepted` |
+| D34 | 2026-08-27 | Product UI defaults to English, with Spanish selectable per user | A Spanish-only UI, matching the Colombian tax domain | The products are also portfolio pieces, and the segment of most interest is foreign clients | `accepted` |
 
 ## How the product treats data
 
 | # | Date | Decision | Rejected alternative | Why | Status |
 |---|---|---|---|---|---|
-| D11 | 2026-08-10 | A1 — Exógena is the starting point only; official certificates win on conflict | Trusting exógena as authoritative | Two entities can report the same money; a fiduciaria's disbursement reads as income | `accepted` |
+| D11 | 2026-08-10 | A1 — Exógena is the starting point only; official certificates win on conflict | Trusting exógena as authoritative | Two entities can report the same money; a trust company's disbursement reads as income | `accepted` |
 | D12 | 2026-08-10 | A2 — Detect income *missing* from exógena via certificates | Treating exógena as complete | Found live: income from a foreign-payments provider absent from the file | `accepted` |
-| D13 | 2026-08-10 | A3 — Field→calculation mapping is proprietary knowledge, not a label read-off | Mapping by the file's own labels | Labels are ambiguous: "susceptible de beneficio" is the FE field, "tras ajustes por notas" feeds the compras threshold | `accepted` |
+| D13 | 2026-08-10 | A3 — Field→calculation mapping is proprietary knowledge, not a label read-off | Mapping by the file's own labels | Labels are ambiguous: "susceptible de beneficio" is the FE field, "tras ajustes por notas" feeds the purchases threshold | `accepted` |
 | D14 | 2026-08-10 | A4/A5 — On any discrepancy or unrecognized item, show the diff and let the user decide | Silently picking a side | The product sells trust; a silent choice is the one thing that destroys it | `accepted` |
 | D15 | 2026-08-10 | B1 — Flow starts with exógena upload, which then produces the suggested-documents checklist | Asking for certificates up front | The file is what the user can get alone, in one place | `accepted` |
 | D16 | 2026-08-10 | B4 — Show everything, including items with zero tax impact | Showing only what changes the result | Completeness builds trust; messaging distinguishes an error with impact from a form error | `accepted` |
-| D17 | 2026-08-10 | B5 — Apply the law as written as the baseline; a professional or the user may override with criterio | Encoding a professional's criterio as the default | The tool prepares for the accountant, it does not replace them | `accepted` |
+| D17 | 2026-08-10 | B5 — Apply the law as written as the baseline; a professional or the user may override with professional judgment | Encoding a professional's judgment as the default | The tool prepares for the accountant, it does not replace them | `accepted` |
 
 ## Product positioning
 
@@ -61,8 +62,8 @@ alternative, the cell says **not recorded** rather than a reconstruction.
 | D21 | — | Backlog and plan live as version-controlled markdown in the repo | A tracker as the source of truth | Single source of truth, readable by agents | `accepted` |
 | D22 | — | Board tool = GitHub (Issues + Projects) | not recorded | Never implemented, and `/method` plus `docs/roadmap.md` now cover what it was for. Whether a board is still wanted is roadmap item 10 | `deprecated` |
 | D23 | 2026-07-06 | Owner tags `[R]` / `[A]` / `[R+A]` adopted | Treating every task as equally delegable | Marks who owns the outcome, not who types | `accepted` |
-| D24 | 2026-07-06 | Parameter values written into acceptance criteria require a verification ficha before being trusted | Trusting webinar-sourced values because they were already written down | Written ≠ verified | `accepted` |
-| D25 | 2026-08-10 | D2 — Ground truth is reconstructed from original source documents, never copied from prior results | Reusing the previous year's computed figures | This is how every AG2023 finding surfaced | `accepted` |
+| D24 | 2026-07-06 | Parameter values written into acceptance criteria require a rule sheet before being trusted | Trusting webinar-sourced values because they were already written down | Written ≠ verified | `accepted` |
+| D25 | 2026-08-10 | D2 — Ground truth is reconstructed from original source documents, never copied from prior results | Reusing the previous year's computed figures | This is how every TY2023 finding surfaced | `accepted` |
 | D26 | 2026-08-10 | D3 — Golden tests run automatically on every change | Human review as the regression check | Two caps broke silently when the 2025 file was rebuilt by copy | `accepted` |
 | D27 | 2026-08-24 | `/method` is the single process; the methodology sections in `PLAN.md` and `memory/constitution.md` are removed | Keeping the Kanban + DoR/DoD alongside `/method` | Three overlapping processes meant none was followed | `accepted` |
 | D28 | 2026-08-24 | Documentation split into `PLAN.md` (framing), `docs/roadmap.md`, `docs/decisions.md`, `docs/log.md`, `docs/domain/` | Keeping one `PLAN.md` | Append-only content was burying the volatile content; `PLAN.md` §11 went stale unnoticed | `accepted` |
@@ -71,3 +72,5 @@ alternative, the cell says **not recorded** rather than a reconstruction.
 | D31 | 2026-08-27 | Nothing committed may identify the owner or a tester. Every figure, name and example in the repository is illustrative, even when modelled on a real case | Committing the real case with the identifying fields removed | The repository is public, and a real return re-identifies whoever filed it | `accepted` |
 | D32 | 2026-08-27 | Personal tax administration is not roadmap work and is tracked outside the repository | Keeping the owner's own filing tasks in `docs/roadmap.md` | They are not product work, and they published a filing calendar tied to a real taxpayer | `accepted` |
 | D33 | 2026-08-27 | The real source documents stay in the repository folder, gitignored, and are deleted once the app runs without them | Moving them to a sibling folder outside the repository | They are the reference material the app is built against; git already ignores them, and what they must never turn into is governed by D31 | `accepted` |
+| D35 | 2026-08-27 | Project documents are English; Spanish survives only in acronyms, normative citations and `exógena`. `ficha` became `rule sheet` | Keeping Colombian tax terms in Spanish throughout the documentation | A citation loses its link to the source when translated; a domain term does not. The mix had already spread across twelve files | `accepted` |
+| D36 | 2026-08-27 | A rule sheet carries values, source, formula, conditions and test case; explanatory prose is dropped | Keeping "the rule in the owner's own words" as the core of the sheet | The sheet is the engine's specification, not a reader's explanation; a sentence that does not change what the engine does is noise | `accepted` |

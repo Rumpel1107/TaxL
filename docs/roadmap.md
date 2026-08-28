@@ -20,7 +20,7 @@ been chosen. P0 is not closed.
 
 | # | Item | Tag | Blocks |
 |---|---|---|---|
-| 1 | Write the fichas for the ten rules sitting at 🟡 (own words + illustrative numeric example + test case) — US-P0-000 | `[R]` | closing P0 |
+| 1 | Write the rule sheets for the rules still at 🟡 (own words + illustrative numeric example + test case) — US-P0-000 | `[R]` | closing P0 |
 | 2 | Close R9 and the flags on R15–R18, pending a professional's answer | `[R]` | closing P0 |
 | 3 | Verify M2: confirm the webinar's worked examples are reproduced | `[R]` | closing P0 |
 | 4 | Run the M5 willingness-to-pay probe with ≥3 people — US-P0-009 | `[R]` | the P2 go/no-go |
@@ -30,7 +30,7 @@ been chosen. P0 is not closed.
 | # | Item | Tag |
 |---|---|---|
 | 5 | Choose the stack. TaxL is front-heavy and near self-service, unlike Tabris — do not inherit its choices | `[R+A]` |
-| 6 | Write `CONTRIBUTING.md` once the stack exists | `[A]` |
+| 6 | Fill in the Dev setup section of `CONTRIBUTING.md` once the stack exists | `[A]` |
 | 7 | Decide whether a board is needed on top of `/method`, or whether this file is the board | `[R]` |
 | 8 | Decide the order of the three specs: `003-calc-engine`, `002-exogena-parser`, `001-free-tier-flow` | `[R]` |
 | 9 | Research the legal boundary between "estimation tool" and "tax advisory" — gates tier Y and the tier X disclaimer | `[R]` |

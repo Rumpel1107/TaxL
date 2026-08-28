@@ -20,12 +20,12 @@
 
 ## Depuration pipeline
 
-1. Renta líquida — income less INCRNGO.
+1. Net income — income less INCRNGO.
 2. The base for line 91.
 3. The 40% cap, as the lower of two limits: 40% of the base and 1.340 UVT (R7). Items subject to
    the cap and items outside it are separated before this step, and the amount lost to the cap is
    kept as an output in its own right — it is the product's headline insight (D19).
-4. Renta líquida gravable.
+4. Taxable income.
 5. Tax, by lookup against the art. 241 progressive table (R8).
 
 Alongside the pipeline, three modules that do not feed it: the filing-obligation check against the

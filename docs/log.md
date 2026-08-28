@@ -9,7 +9,7 @@
 ## 2026-08-27 — `CONTEXT.md` emptied and deleted
 
 The session export carried ten sections. Four were already absorbed and died with the file: the
-discovery decisions were D09–D20, D25 and D26; the ficha status was already in
+discovery decisions were D09–D20, D25 and D26; the rule sheet status was already in
 `docs/domain/rules.md`; the next-steps list and the privacy note had been superseded by the
 roadmap and by principle 11.
 
@@ -28,7 +28,7 @@ The remaining four sections are real taxpayer data and stayed local, as
 
 Nothing committed may identify the owner or a tester; everything written in the repository is an
 illustrative example, even when modelled on a real case (D31). Personal tax administration is not
-roadmap work and left this repository (D32) — the AG2025 filing item went with it, keeping only
+roadmap work and left this repository (D32) — the TY2025 filing item went with it, keeping only
 the domain half as roadmap item 3.
 
 Four violations were already public and were removed: a filing calendar tied to a real tax id, a
@@ -39,7 +39,7 @@ decision rows — redactions of wording, not changes of meaning, which is why D3
 blocking them.
 
 The rule became constitution principle 11, and it reaches the next item of work directly: every
-ficha's numeric example is an invented figure, and the exógena↔return pairs collected from other
+rule sheet's numeric example is an invented figure, and the exógena↔return pairs collected from other
 people (item 12) never enter the repository.
 
 The real source documents stay in the repository folder, gitignored — they are the reference the
@@ -63,7 +63,7 @@ inherits material; the interview rules that make phases 0–4 checkable; an *art
 gate before Build; the `[NEEDS CLARIFICATION]` marker across all templates; and decisions carrying
 an id and a status, never edited once accepted.
 
-The first use of the marker was on this repository's own roadmap: the AG2025 filing deadline had
+The first use of the marker was on this repository's own roadmap: the TY2025 filing deadline had
 been written as a fact when it was an inference from a table, never confirmed.
 
 Found while reorganizing: the registry `R1–R14` was entirely unverified on paper while
@@ -80,13 +80,13 @@ into Claude Code — a temporary file, to be emptied into its destinations and d
 
 ## 2026-07 → 2026-08 — Excel calculation engine built and validated
 
-The deterministic engine was built in Excel for the asalariado profile and reproduces three real
+The deterministic engine was built in Excel for the employee profile and reproduces three real
 returns to the peso (two filed, one draft pending professional review). These are the golden
 tests. **M1 met** (zero difference on key lines) and **M3 met** (switching tax year touches only
 the Parameters sheet). **M2 is not verified** and **M5 has not been run.**
 
 Reconstructing each year from original source documents rather than from the previous year's
-results surfaced several findings on already-filed returns, all tax-neutral, and one anticipo
+results surfaced several findings on already-filed returns, all tax-neutral, and one advance payment
 figure that no reading of art. 807 reproduces. Both are with a professional.
 
 Two regressions appeared while rebuilding the 2025 file by copying the previous one — an AFC cap

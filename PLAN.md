@@ -15,7 +15,7 @@
 
 **General objective.** Build a simulator that allows an individual taxpayer in Colombia to autonomously obtain a **reliable draft** of their income tax return, with field-by-field explanations and recommendations, positioned as an **educational / pre-check tool** (not as official tax-filing software) — monetized through a free-to-paid funnel (§3).
 
-**MVP objective (Phase 0).** Validate a **deterministic calculation engine in Excel**, for the **employee (asalariado)** profile, tax year **2025**, confirming it reproduces, to the peso, already-filed tax returns.
+**MVP objective (Phase 0).** Validate a **deterministic calculation engine in Excel**, for the **employee** profile, tax year **2025**, confirming it reproduces, to the peso, already-filed tax returns.
 
 **Why this scope.** The highest-risk piece (the tax logic) is tackled first, with the cheapest medium (Excel) and free ground truth (own past returns). UI, document ingestion, and AI come later — on top of an engine already known to be correct.
 
@@ -25,7 +25,7 @@
 
 > **North Star: "Understand and verify before filing."**
 
-The DIAN already offers the **"declaración sugerida"**: a **pre-filled** form based on what third parties reported, which the user reviews, edits, or accepts — but **any inconsistency remains the taxpayer's responsibility**, and it's only available to some profiles.
+The DIAN already offers the **suggested return**: a **pre-filled** form based on what third parties reported, which the user reviews, edits, or accepts — but **any inconsistency remains the taxpayer's responsibility**, and it's only available to some profiles.
 
 The simulator **does not compete on "filling out the form"** (the DIAN already does that). It competes in the layer **before that**: making the person **understand and trust** the numbers before accepting anything official.
 
@@ -82,11 +82,11 @@ later phase (high value, high error consequence); communicated in X as "coming s
 ## 5. Scope
 
 **In scope for MVP (Phase 0)**
-- **Employee (asalariado)** profile (with or without freelance/honorarios income opting for the 25% exempt income benefit).
-- General schedule (cédula general) → labor income sub-schedule.
+- **Employee** profile (with or without freelance / professional fees income opting for the 25% exempt income benefit).
+- General schedule → labor income sub-schedule.
 - Filing-obligation determination via the 4 thresholds.
 - Tax liability calculation (Art. 241 table).
-- Wealth/equity comparison (comparación patrimonial).
+- Net worth comparison.
 - Output mapped to Form 210 lines.
 - **Manual** data entry *(P0 only — the product entry point is the exógena file, see §3 and P2)*.
 
@@ -111,7 +111,7 @@ later phase (high value, high error consequence); communicated in X as "coming s
 
 **Cross-cutting principles (apply to all phases):**
 1. **The engine is deterministic.** AI never calculates the tax; it only extracts documents, explains, and recommends.
-2. **Everything is parameterized by tax year.** Parameter *values* are data, never hardcoded — and every value requires its verification ficha (`docs/domain/rules.md`) before being trusted, regardless of source.
+2. **Everything is parameterized by tax year.** Parameter *values* are data, never hardcoded — and every value requires its rule sheet (`docs/domain/rules.md`) before being trusted, regardless of source.
 3. **The "exógena" report is the gold-standard input** (Excel file, includes the 4-threshold summary) — and the **product's entry point**, not a later enhancement.
 4. **Educational / pre-check positioning**, always with a disclaimer and a recommendation to seek professional validation.
 
@@ -124,10 +124,10 @@ later phase (high value, high error consequence); communicated in X as "coming s
 | ID | Risk | Prob. | Impact | Mitigation | Trigger |
 |----|------|-------|--------|------------|---------|
 | R-1 | **Scope creep** | High | High | Cut by profile (employee first); prioritized backlog; explicit out-of-scope; MVP closing rule (M1+M2) | Tasks appear not tied to M1/M2 |
-| R-2 | **Incorrect tax calculation** | Medium | High | Validation suite vs real returns; fichas (US-P0-000); professional review (P1) | A test case shows non-$0 difference |
+| R-2 | **Incorrect tax calculation** | Medium | High | Validation suite vs real returns; rule sheets (US-P0-000); professional review (P1) | A test case shows non-$0 difference |
 | R-3 | **Regulatory changes** | High | Medium | Everything parameterized by year; isolated Parameters sheet | New reform / decree |
 | R-4 | **Delegating the calculation to AI** | Medium | High | Hard rule: deterministic engine; AI only extracts/explains | Someone proposes "let the LLM calculate it" |
-| R-5 | **Exógena depuration fails (false income)** | High | High | R11–R14 fichas calibrated against real exógena↔declaration pairs; conservative framing; show ranges when ambiguous; manual correction always available | Free estimate deviates grossly from a known real return |
+| R-5 | **Exógena depuration fails (false income)** | High | High | R11–R14 rule sheets calibrated against real exógena↔declaration pairs; conservative framing; show ranges when ambiguous; manual correction always available | Free estimate deviates grossly from a known real return |
 | R-6 | **Third-party personal data (Law 1581)** | Medium | High | Consent/security designed from P2; educational positioning | First user other than myself |
 | R-7 | **TY2025 exógena not yet available (~July)** | High | Low | Work P0 with 2024 data / own past returns | Calendar |
 | R-8 | **Over-engineering the methodology** | Medium | Medium | Lightweight Kanban; weekly review; no heavy ceremonies | The board stops being updated |
@@ -138,10 +138,10 @@ later phase (high value, high error consequence); communicated in X as "coming s
 
 ## 8. Quick Glossary
 
-- **UVT** (Unidad de Valor Tributario): Colombia's Tax Value Unit (2025: 49,799 COP — pending ficha). Converts thresholds into pesos.
+- **UVT** (Unidad de Valor Tributario): Colombia's Tax Value Unit (2025: 49,799 COP — pending rule sheet). Converts thresholds into pesos.
 - **INCRNGO**: Non-taxable income (Ingreso No Constitutivo de Renta ni Ganancia Ocasional).
-- **Cédula general**: groups labor, capital, and non-labor income.
+- **General schedule** (cédula general): groups labor, capital, and non-labor income.
 - **Exógena**: third-party information reported to the DIAN; includes the 4-threshold summary. It is the product's entry point.
-- **Declaración sugerida**: DIAN's pre-filled form based on exógena; taxpayer remains responsible.
+- **Suggested return** (declaración sugerida): DIAN's pre-filled form based on exógena; taxpayer remains responsible.
 - **Form 210**: income tax return for resident individual taxpayers.
-- **Comparación patrimonial**: DIAN's control over year-over-year net worth growth.
+- **Net worth comparison** (comparación patrimonial): DIAN's control over year-over-year net worth growth.

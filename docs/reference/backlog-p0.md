@@ -5,7 +5,7 @@
 > in code, not because there is work left in them.
 >
 > Moved verbatim out of `PLAN.md` §8 on 2026-08-24. Two stories were NOT closed and live in
-> `docs/roadmap.md` instead: **US-P0-000** (verification fichas) and **US-P0-009** (WTP probe).
+> `docs/roadmap.md` instead: **US-P0-000** (rule sheets) and **US-P0-009** (WTP probe).
 > Status of each rule is tracked in `docs/domain/rules.md`, not here.
 
 ---
@@ -15,8 +15,8 @@
 **US-P0-001 · Parameters Sheet** `[R+A]`
 *As* the engine builder, *I want* a sheet with the UVT and all thresholds/limits by tax year, *so that* the engine doesn't depend on hardcoded values and works every year.
 - AC1: A `Parameters` sheet exists with a "Tax year" column.
-- AC2: Includes UVT 2025 = 49,799 COP and thresholds: income/purchases/deposits (1,400 UVT), net worth (4,500 UVT). *(pending ficha — see US-P0-000)*
-- AC3: Includes limits: general 40% cap; 25% exempt income (cap 790 UVT); dependents (384 UVT or 10%); mortgage interest (100 UVT); prepaid health (192 UVT); GMF (50%); additional dependents (72 UVT each, max 4). *(pending ficha)*
+- AC2: Includes UVT 2025 = 49,799 COP and thresholds: income/purchases/deposits (1,400 UVT), net worth (4,500 UVT). *(pending rule sheet — see US-P0-000)*
+- AC3: Includes limits: general 40% cap; 25% exempt income (cap 790 UVT); dependents (384 UVT or 10%); mortgage interest (100 UVT); prepaid health (192 UVT); GMF (50%); additional dependents (72 UVT each, max 4). *(pending rule sheet)*
 - AC4: All other sheets reference this one via formula (zero hardcoded literals).
 
 **US-P0-002 · Input Capture** `[A]`
