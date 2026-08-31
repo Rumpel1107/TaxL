@@ -31,7 +31,7 @@ live in `docs/domain/rule-sheets/`.
 | R4 | 25% exempt labor income, cap 790 UVT | E.T. art. 206 num. 10 (Ley 2277/2022 art. 2) | 🟡 |
 | R5 | Dependents, both modalities + caps | E.T. art. 387 inc. 2 and art. 336 num. 3 inc. 2; Decreto 2231/2023 | 🟡 |
 | R6 | Individual caps: prepaid health, mortgage interest, AFC/voluntary pension, GMF | E.T. arts. 387, 119, 126-1, 126-4, 115; DIAN Concepto 3591/2025 | 🟡 |
-| R7 | Global 40% / 1.340 UVT cap; capped vs uncapped items | E.T. art. 336 num. 3 | 🟡 |
+| R7 | Global 40% / 1.340 UVT cap; capped vs uncapped items | E.T. art. 336 num. 3 | ✅ |
 | R8 | Art. 241 progressive table + fiscal adjustment | E.T. art. 241 (Ley 2010/2019 art. 34); art. 70; Decretos 128/2024, 174/2025, 0449/2026 | 🟡 |
 | R9 | Withholdings; advance payment; balance due vs refund | E.T. arts. 383, 807; Form 210 | ⬜ |
 | R10 | Filing calendar by ID digits | Decreto 2229/2023 (permanent calendar) | 🟡 |
@@ -75,8 +75,9 @@ These are why a 🟡 is not a ✅. Each must be resolved or accepted in writing 
 - **R10 — one date to confirm.** The TY2025 filing window ends 26-oct-2026 by business-day count,
   against 24-oct in the two prior seasons. Confirm against the definitive DIAN 2026 calendar before
   hard-coding.
-- **R7 — a published typo to ignore.** One secondary source printed the TY2023 ceiling as
-  $53.832.000; the arithmetically correct figure is 1.340 × $42.412 = **$56.832.000**.
+- **R1 — one rounding rule to confirm.** Whether art. 868 rounding to the nearest thousand applies
+  to the derived threshold or only to the UVT value. The TY2025 filing threshold of 1.400 UVT is
+  published both as $69.719.000 and $69.718.600.
 
 ## Rules whose reading the owner already closed in session
 

@@ -34,6 +34,7 @@ alternative, the cell says **not recorded** rather than a reconstruction.
 | D09 | 2026-08-10 | C2 — MVP automates one reference case exactly, plus out-of-scope detection | Speculative coverage of other profiles | Coverage expands case by case as real scenarios appear | `accepted` |
 | D10 | 2026-08-10 | C3 — Parameters editable by non-technical users (accountants) as a first-class feature | Parameters as config files | An accountant must be able to update a legal value without a developer | `accepted` |
 | D34 | 2026-08-27 | Product UI defaults to English, with Spanish selectable per user | A Spanish-only UI, matching the Colombian tax domain | The products are also portfolio pieces, and the segment of most interest is foreign clients | `accepted` |
+| D37 | 2026-08-31 | Benefits the taxpayer did not apply are pointed out in the manual PoC, framed for validation with their accountant; the product blocks them until R-9 closes | Offering them in the product from its first version, or withholding them in the PoC too | The analysis surfaces them either way; R-9 gates offering it as a feature, not knowing the figure | `accepted` |
 
 ## How the product treats data
 
