@@ -20,7 +20,7 @@ been chosen. P0 is not closed.
 
 | # | Item | Tag | Blocks |
 |---|---|---|---|
-| 1 | Write the rule sheets for the rules still at 🟡 (values + source + formula + conditions + test case) — US-P0-000 | `[R]` | closing P0 |
+| 1 | Resolve or accept in writing the nine open flags on the rule sheets (R3–R6, R8, R9, R10, R15, R16) — US-P0-000 | `[R]` | closing P0 |
 | 2 | Choose the stack. TaxL is front-heavy and near self-service, unlike Tabris — do not inherit its choices | `[R+A]` | the first slice |
 | 3 | Build the first vertical slice: manual entry of the depuration figures → full general-schedule liquidation → key lines of Form 210, with the three reference returns as golden tests. No exógena, no login, no free tier | `[R+A]` | everything testable |
 | 4 | Verify M2: confirm the webinar's worked examples are reproduced | `[R]` | closing P0 |

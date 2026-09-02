@@ -21,6 +21,10 @@
            or deposits         ≥ threshold_1400
            or gross_wealth     ≥ threshold_4500
 
+    labor_share     = labor_income / gross_income
+    exempting_basis = art. 593 (salaried) if labor_share ≥ 0.80, else art. 592
+                      — reported only when not obliged
+
 ## Conditions
 
 - Five conditions, any one of which triggers the obligation on its own. Four share the 1.400
@@ -32,8 +36,15 @@
   filing date (R1).
 - The table gives the exact product. The rounded figures that also circulate — $69.719.000 for
   2025 — are not the threshold the engine compares against (R1).
-- **Open:** art. 593 adds a condition for the salaried regime — at least 80% of income arising
-  from a labor relationship. Its effect on the five conditions above is not established here.
+- The 80% condition of art. 593 selects the exempting basis, never the outcome: the salaried
+  category and the general category carry identical thresholds (DUT 1625 de 2016
+  art. 1.6.1.13.2.7), so a salaried person below 80% exits through art. 592 with the same
+  figures. Resolved 2026-09-02.
+- `labor_share` is derived from the incomes the flow already captures, never asked as a
+  question of the user; the exempting basis is reported with the not-obliged result so the
+  output cites its legal basis (constitution principle 7).
+- The two categories keep separate threshold parameters, equal today: a future divergence
+  between them is a parameter change, not a code change.
 
 ## Test case
 
@@ -47,3 +58,12 @@ obliged, every other figure unchanged
 
 **Given** the first case with gross income of exactly $69.718.600, tax year 2025
 **When** the thresholds resolve → the comparison is `≥`, so the taxpayer is obliged
+
+**Given** the first case with labor income of $35.000.000 within the $40.000.000 gross, tax
+year 2025
+**When** the thresholds resolve → not obliged; labor share is 87,5% ≥ 80%, so the exempting
+basis reported is art. 593
+
+**Given** the same case with labor income of $20.000.000
+**When** the thresholds resolve → not obliged; labor share is 50% < 80%, so the exempting
+basis reported is art. 592

@@ -6,6 +6,39 @@
 > (`docs/roadmap.md`). No taxpayer figures — golden-test values stay in the local fixture,
 > never in this repository (`memory/constitution.md`, principle 3).
 
+## 2026-09-02 — The registry learns what the rule sheets say
+
+Thirteen rule sheets existed and the registry marked one of them closed. The status column was
+never updated after the sheets were written, so the roadmap still carried "write the rule sheets"
+as the item blocking P0 when the writing was already done.
+
+Correcting it surfaced the larger half. Ten of the thirteen sheets carry an `**Open:**` line inside
+their conditions, and the registry's flag section knew three of them. The seven it did not know —
+R2, R3, R4, R5, R6, R15 and R16 — are now listed there as an index: the full statement of each flag
+stays in its own sheet, so the text has one copy and the list has one place.
+
+The status axis was redefined around that. A rule closes when its sheet exists **and** every flag
+the sheet raises is resolved or accepted in writing. 🟡 now means the sheet is written with flags
+open — what R8 and R10 always were, and what R9 became on rising from ⬜. Three rules are closed:
+R1, R7 and R17.
+
+R18 keeps its row and closes inside R3's sheet rather than getting one of its own (D38). The registry
+indexes every rule the engine implements, and the engine does add the solidarity fund to the
+mandatory contributions; a second sheet repeating R3's formula and test case would have been the
+next thing to drift apart.
+
+Found while checking: R4's flag is the one that reaches the first slice. Art. 206 par. 5 extends
+the 25% exemption to professional fees, and the MVP scope includes an employee with fees income
+opting for the benefit — so that flag is not deferrable to a later case the way the other six are.
+
+Later the same day R2's flag became the first of the ten to close, pulled by the spec interview
+rather than by the registry: the first slice's entry gate needed to know whether the 80% condition
+of art. 593 reaches the five thresholds. It does not — the salaried and the general categories of
+DUT 1625 art. 1.6.1.13.2.7 carry identical thresholds, so the condition selects the numeral that
+exempts, never the outcome. The engine derives the labor share from figures the flow already
+captures, never asks for it, and cites the exempting numeral with the not-obliged result; the two
+categories keep separate, today-equal threshold parameters. Nine flags remain.
+
 ## 2026-09-01 — Second batch of answers: R9, R17 and R18 unblocked, R1 closed
 
 R1's rounding question is settled. The UVT is a unit of measure, so a threshold resolves to the
