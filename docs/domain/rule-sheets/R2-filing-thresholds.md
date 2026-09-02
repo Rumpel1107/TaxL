@@ -30,9 +30,8 @@
 - Gross wealth is measured at 31 December of the tax year.
 - Thresholds resolve with the UVT of the tax year being declared, not the one in force at the
   filing date (R1).
-- The table gives the exact product. Applying art. 868 rounding to the derived threshold would
-  give $59.377.000 / $69.719.000 and $211.793.000 / $224.096.000 instead; which one applies is
-  R1's open question.
+- The table gives the exact product. The rounded figures that also circulate — $69.719.000 for
+  2025 — are not the threshold the engine compares against (R1).
 - **Open:** art. 593 adds a condition for the salaried regime — at least 80% of income arising
   from a labor relationship. Its effect on the five conditions above is not established here.
 

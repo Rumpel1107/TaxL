@@ -28,6 +28,10 @@
 4. Taxable income.
 5. Tax, by lookup against the art. 241 progressive table (R8).
 
+The tax then resolves into the advance payment and the final balance (R9). From the third return
+onwards the advance base is the filer's lawful choice between two methods, so the engine resolves
+both and takes the choice as an input rather than defaulting to one.
+
 Alongside the pipeline, three modules that do not feed it: the filing-obligation check against the
 four thresholds (R2), the net-worth comparison, and occasional gains at 15%.
 

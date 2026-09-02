@@ -7,9 +7,9 @@ DIAN Concepto 3591 de 2025 · DUT 1625 de 2016 arts. 1.2.1.20.3–1.2.1.20.4
 
 | Tax year | 192 UVT — prepaid health | 1.200 UVT — mortgage interest | 3.800 UVT — AFC + voluntary pension |
 |---|---|---|---|
-| 2023 | $8.143.000 | $50.894.000 | $161.166.000 |
-| 2024 | $9.036.000 | $56.478.000 | $178.847.000 |
-| 2025 | $9.561.000 | $59.759.000 | $189.236.000 |
+| 2023 | $8.143.104 | $50.894.400 | $161.165.600 |
+| 2024 | $9.036.480 | $56.478.000 | $178.847.000 |
+| 2025 | $9.561.408 | $59.758.800 | $189.236.200 |
 
 ## Formula
 
@@ -37,7 +37,7 @@ DIAN Concepto 3591 de 2025 · DUT 1625 de 2016 arts. 1.2.1.20.3–1.2.1.20.4
 
 **Given** prepaid health paid of $12.000.000 and mortgage interest paid of $8.000.000, tax
 year 2025
-**When** the caps resolve → `prepaid_health` = $9.561.000, capped; `mortgage_interest` =
+**When** the caps resolve → `prepaid_health` = $9.561.408, capped; `mortgage_interest` =
 $8.000.000, in full
 
 **Given** labor income of $100.000.000 and contributions of $40.000.000, tax year 2025
@@ -46,7 +46,7 @@ $40.000.000
 
 **Given** labor income of $800.000.000 and contributions of $250.000.000, tax year 2025
 **When** the cap resolves → 30% would be $240.000.000, so the 3.800 UVT ceiling governs and
-`afc_and_voluntary` = $189.236.000
+`afc_and_voluntary` = $189.236.200
 
 **Given** GMF paid of $2.000.000
 **When** the deduction resolves → $1.000.000, with no ceiling in UVT

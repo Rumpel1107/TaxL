@@ -6,6 +6,30 @@
 > (`docs/roadmap.md`). No taxpayer figures — golden-test values stay in the local fixture,
 > never in this repository (`memory/constitution.md`, principle 3).
 
+## 2026-09-01 — Second batch of answers: R9, R17 and R18 unblocked, R1 closed
+
+R1's rounding question is settled. The UVT is a unit of measure, so a threshold resolves to the
+exact product; art. 868 rounding reaches only the peso figures computed from it, where art. 577
+governs. Checking it against the engine reversed the expected direction of the fix: the Excel
+already resolves every cap exactly, and five rule sheets had rounded the caps to thousands when
+they were written. R3, R4, R5, R6 and R7 were corrected against the engine, together with the test
+cases quoting a cap.
+
+R9 stopped being blocked without the number being explained. The advance base is not an undecided
+method: from the third return onwards the filer chooses between 75% of the current year's tax and
+the two-year average, and both are lawful. What survives is narrower — neither reproduces the
+amount settled in the reference case, so which base was used is unknown. That the choice belongs
+to the filer is a product requirement and is recorded in `docs/reference/calc-model.md`.
+
+R17 documents the two mechanisms of art. 126-4 coexisting per contribution, and fixes the MVP
+boundary: the non-compliant withdrawal is not modelled. R18 rose from doctrine alone to doctrine
+plus DIAN administrative practice, and its content lives in R3's sheet.
+
+Thirteen rule sheets now exist. The only flags left are R8's decree and R10's filing date.
+
+Found while writing R17: the share of a contribution lost to the general cap may never have
+produced a tax benefit, which is a second reason to keep `lost_to_cap` traceable per tax year.
+
 ## 2026-08-27 — `CONTEXT.md` emptied and deleted
 
 The session export carried ten sections. Four were already absorbed and died with the file: the

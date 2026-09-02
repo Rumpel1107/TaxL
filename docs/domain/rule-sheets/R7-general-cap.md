@@ -7,9 +7,9 @@ art. 1.2.1.20.4 · DIAN Res. 000120 de 2024
 
 | Tax year | 1.340 UVT |
 |---|---|
-| 2023 | $56.832.000 |
-| 2024 | $63.067.000 |
-| 2025 | $66.731.000 |
+| 2023 | $56.832.080 |
+| 2024 | $63.067.100 |
+| 2025 | $66.730.660 |
 
 ## Formula
 
@@ -30,7 +30,7 @@ art. 1.2.1.20.4 · DIAN Res. 000120 de 2024
 - **Outside the cap:** 72 UVT per dependent under art. 336 num. 3 (R5), the 1% electronic-invoice
   deduction under art. 336 num. 5, and pension exempt income of the pensions schedule.
 - The ceiling is always 1.340 × the year's UVT. A secondary source printed the TY2023 figure as
-  $53.832.000; the arithmetic gives $56.832.000.
+  $53.832.000; the arithmetic gives $56.832.080.
 
 ## Test case
 
@@ -39,9 +39,9 @@ art. 1.2.1.20.4 · DIAN Res. 000120 de 2024
 `lost_to_cap` = $12.000.000
 
 **Given** a base of $200.000.000 and $70.000.000 of items inside the cap, tax year 2025
-**When** the cap is applied → the 1.340 UVT ceiling ($66.731.000) governs, `allowed_inside` =
-$66.731.000 and `lost_to_cap` = $3.269.000
+**When** the cap is applied → the 1.340 UVT ceiling ($66.730.660) governs, `allowed_inside` =
+$66.730.660 and `lost_to_cap` = $3.269.340
 
-**Given** the first case plus one dependent claimed under art. 336 num. 3 ($3.586.000 for 2025)
-**When** the cap is applied → `allowed_inside` stays $40.000.000 and the $3.586.000 is deducted in
+**Given** the first case plus one dependent claimed under art. 336 num. 3 ($3.585.528 for 2025)
+**When** the cap is applied → `allowed_inside` stays $40.000.000 and the $3.585.528 is deducted in
 full, outside the cap

@@ -6,9 +6,9 @@
 
 | Tax year | 790 UVT |
 |---|---|
-| 2023 | $33.505.000 |
-| 2024 | $37.181.000 |
-| 2025 | $39.341.000 |
+| 2023 | $33.505.480 |
+| 2024 | $37.181.350 |
+| 2025 | $39.341.210 |
 
 ## Formula
 
@@ -42,7 +42,7 @@ tax year 2025
 **Given** labor payments of $250.000.000, INCRNGO of $20.000.000 and deductions of $30.000.000,
 tax year 2025
 **When** the exemption is resolved → base $200.000.000, the 790 UVT cap governs, `exempt_25` =
-$39.341.000
+$39.341.210
 
 **Given** the first case plus $10.000.000 of AFC contributions
 **When** the exemption is resolved → base $70.000.000 and `exempt_25` = $17.500.000, not

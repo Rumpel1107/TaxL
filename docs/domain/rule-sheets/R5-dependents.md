@@ -7,9 +7,9 @@ Decreto 2231 de 2023
 
 | Tax year | 384 UVT — art. 387 | 72 UVT per dependent — art. 336 num. 3 |
 |---|---|---|
-| 2023 | $16.286.000 | $3.054.000 |
-| 2024 | $18.073.000 | $3.389.000 |
-| 2025 | $19.123.000 | $3.586.000 |
+| 2023 | $16.286.208 | $3.053.664 |
+| 2024 | $18.072.960 | $3.388.680 |
+| 2025 | $19.122.816 | $3.585.528 |
 
 ## Formula
 
@@ -32,13 +32,13 @@ Decreto 2231 de 2023
 ## Test case
 
 **Given** labor income of $100.000.000 and 4 dependents, tax year 2025
-**When** both modalities resolve → `deduction_387` = $10.000.000, under the $19.123.000 cap,
-and `deduction_336_3` = 4 × $3.586.000 = $14.344.000
+**When** both modalities resolve → `deduction_387` = $10.000.000, under the $19.122.816 cap,
+and `deduction_336_3` = 4 × $3.585.528 = $14.342.112
 
 **Given** the same case with 5 dependents
 **When** both modalities resolve → neither amount moves: `deduction_387` stays $10.000.000 and
-`deduction_336_3` stays $14.344.000, the count capped at 4
+`deduction_336_3` stays $14.342.112, the count capped at 4
 
 **Given** labor income of $250.000.000 and 1 dependent, tax year 2025
 **When** both modalities resolve → 10% would be $25.000.000, so the 384 UVT cap governs and
-`deduction_387` = $19.123.000; `deduction_336_3` = $3.586.000
+`deduction_387` = $19.122.816; `deduction_336_3` = $3.585.528

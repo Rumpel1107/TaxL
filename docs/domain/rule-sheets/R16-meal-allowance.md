@@ -4,8 +4,7 @@
 
 ## Values
 
-Both figures are monthly. The table gives the exact product; whether art. 868 rounding applies
-to a derived threshold is R1's open question.
+Both figures are monthly, and the table gives the exact product (R1).
 
 | Tax year | 310 UVT — salary ceiling | 41 UVT — allowance cap |
 |---|---|---|

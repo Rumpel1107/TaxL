@@ -20,17 +20,17 @@ been chosen. P0 is not closed.
 
 | # | Item | Tag | Blocks |
 |---|---|---|---|
-| 1 | Write the rule sheets for the rules still at 🟡 (own words + illustrative numeric example + test case) — US-P0-000 | `[R]` | closing P0 |
-| 2 | Close R9 and the flags on R15–R18, pending a professional's answer | `[R]` | closing P0 |
-| 3 | Verify M2: confirm the webinar's worked examples are reproduced | `[R]` | closing P0 |
-| 4 | Run the M5 willingness-to-pay probe with ≥3 people — US-P0-009 | `[R]` | the P2 go/no-go |
-| 5 | Run the manual PoC: liquidate 5 real employee cases with the Excel, free, participants' documents deleted on delivery — the deliverable is the list of scenarios the engine does not cover | `[R]` | the beta scope |
+| 1 | Write the rule sheets for the rules still at 🟡 (values + source + formula + conditions + test case) — US-P0-000 | `[R]` | closing P0 |
+| 2 | Choose the stack. TaxL is front-heavy and near self-service, unlike Tabris — do not inherit its choices | `[R+A]` | the first slice |
+| 3 | Build the first vertical slice: manual entry of the depuration figures → full general-schedule liquidation → key lines of Form 210, with the three reference returns as golden tests. No exógena, no login, no free tier | `[R+A]` | everything testable |
+| 4 | Verify M2: confirm the webinar's worked examples are reproduced | `[R]` | closing P0 |
+| 5 | Run the M5 willingness-to-pay probe with ≥3 people — US-P0-009 | `[R]` | the P2 go/no-go |
+| 6 | Run the manual PoC: liquidate 5 real employee cases with the Excel, free, participants' documents deleted on delivery — the deliverable is the list of scenarios the engine does not cover | `[R]` | the beta scope |
 
 ## Next, once P0 closes
 
 | # | Item | Tag |
 |---|---|---|
-| 6 | Choose the stack. TaxL is front-heavy and near self-service, unlike Tabris — do not inherit its choices | `[R+A]` |
 | 7 | Fill in the Dev setup section of `CONTRIBUTING.md` once the stack exists | `[A]` |
 | 8 | Decide whether a board is needed on top of `/method`, or whether this file is the board | `[R]` |
 | 9 | Decide the order of the three specs: `003-calc-engine`, `002-exogena-parser`, `001-free-tier-flow` | `[R]` |
@@ -63,4 +63,4 @@ Epic-level, to be broken into slices when reached. Carried from `PLAN.md` §8.
 - **US-P2-004** — Upload exógena file (with curated download guide) → parse, depurate (R11–R14), extract the 4 thresholds and breakdown → free-tier conservative estimate + deadline + applicable rules.
 - **US-P2-005** — Tier X purchase flow: full liquidation + deduction validation + normative breakdown + documents checklist.
 - **US-P3-001** — Upload certificates one at a time with fail-fast validation (OCR).
-- **US-P4-001** — Field-level tooltips and AI alerts; tier Y recommendations, gated on item 9.
+- **US-P4-001** — Field-level tooltips and AI alerts; tier Y recommendations, gated on the legal-boundary item.

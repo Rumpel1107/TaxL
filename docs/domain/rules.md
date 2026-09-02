@@ -27,7 +27,7 @@ live in `docs/domain/rule-sheets/`.
 |---|---|---|---|
 | R1 | UVT value per tax year | DIAN Res. 001264/2022 (2023), 000187/2023 (2024), 000193/2024 (2025) | 🟡 |
 | R2 | Filing-obligation thresholds (4, in UVT) | E.T. arts. 592, 593, 594-3; DUT 1625/2016 art. 1.6.1.13.2.7 | 🟡 |
-| R3 | INCRNGO — mandatory health & pension contributions | E.T. arts. 55, 56 | 🟡 |
+| R3 | INCRNGO — mandatory health & pension contributions | E.T. arts. 55, 56; Ley 100 de 1993 arts. 20, 25–27 | 🟡 |
 | R4 | 25% exempt labor income, cap 790 UVT | E.T. art. 206 num. 10 (Ley 2277/2022 art. 2) | 🟡 |
 | R5 | Dependents, both modalities + caps | E.T. art. 387 inc. 2 and art. 336 num. 3 inc. 2; Decreto 2231/2023 | 🟡 |
 | R6 | Individual caps: prepaid health, mortgage interest, AFC/voluntary pension, GMF | E.T. arts. 387, 119, 126-1, 126-4, 115; DIAN Concepto 3591/2025 | 🟡 |
@@ -45,8 +45,8 @@ engine actually does.
 |---|---|---|---|
 | R15 | Exempt severance pay, gradual table | E.T. art. 206 num. 4 | 🟡 |
 | R16 | Meal allowance payments are not income under both monthly UVT conditions | E.T. art. 387-1 | 🟡 |
-| R17 | AFC contingent withholding mechanics | E.T. art. 126-4 | ⬜ |
-| R18 | Fondo de Solidaridad Pensional as INCRNGO | E.T. art. 55 — **doctrine only** | ⬜ |
+| R17 | AFC contingent withholding mechanics | E.T. art. 126-4; DUT 1625 de 2016 art. 1.2.4.1.32; DIAN Concepto 4 de 2002, Oficio 33234 de 2018 | ⬜ |
+| R18 | Fondo de Solidaridad Pensional as INCRNGO | E.T. art. 55; Ley 100 de 1993 arts. 20, 25–27; DIAN Oficio 909171 de 2021 | ⬜ |
 | R19 | Sale of primary residence, exemption | E.T. art. 311-1 — out of MVP scope | ⬜ |
 
 ## Exógena depuration rules
@@ -65,19 +65,16 @@ exógena↔return pairs held locally.
 
 These are why a 🟡 is not a ✅. Each must be resolved or accepted in writing before its rule sheet closes.
 
-- **R9 — blocked.** The advance payment method is undecided: straight 75% vs biannual average. Neither
-  reproduces the amount actually paid in the reference case. The question is with a professional.
-- **R18 — doctrine, not doctrine-numbered.** FSP as INCRNGO rests on it being legally part of the
-  mandatory pension contribution under art. 55. No numbered DIAN Concepto was located.
+- **R9 — one figure still unexplained.** The method is no longer open: from the third return
+  onwards the filer chooses between the 75% of the current year's tax and the two-year average,
+  and both are lawful. Neither reproduces the amount actually settled in the reference case, and
+  which base was used is unknown.
 - **R8 — one decree to confirm.** The TY2025 fiscal adjustment of 5,81% comes from Decreto 0449 de
   2026, issued close to the research date; number and date need checking against the Diario Oficial.
   It affects fixed assets / occasional gains, not the ordinary employee depuration.
 - **R10 — one date to confirm.** The TY2025 filing window ends 26-oct-2026 by business-day count,
   against 24-oct in the two prior seasons. Confirm against the definitive DIAN 2026 calendar before
   hard-coding.
-- **R1 — one rounding rule to confirm.** Whether art. 868 rounding to the nearest thousand applies
-  to the derived threshold or only to the UVT value. The TY2025 filing threshold of 1.400 UVT is
-  published both as $69.719.000 and $69.718.600.
 
 ## Rules whose reading the owner already closed in session
 
