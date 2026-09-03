@@ -7,7 +7,7 @@
 > (`docs/log.md`), the tax rules (`docs/domain/`). Process — phases and gates — is the `/method`
 > skill.
 >
-> Owner: Rumpel · Last updated: 2026-08-27
+> Owner: Rumpel · Last updated: 2026-09-03
 
 ---
 
@@ -59,8 +59,9 @@ Manual entry remains available as fallback and is the P0-Excel mechanism.
 | **Y (upsell, post-MVP)** | Recommendations to reduce next year's tax (AFC, voluntary pension, etc.). ⚠️ Closest to "tax advisory" — gated on the legal-boundary research task. | Additional payment |
 
 Funnel mechanics: the free no-deductions estimate is deliberately the **ceiling**; X literally sells
-"see how much you can lower it". **The deduction IS the product.** Form 210 draft output stays in a
-later phase (high value, high error consequence); communicated in X as "coming soon".
+"see how much you can lower it". **The deduction IS the product.** Every line the engine computes
+carries its Form 210 box number from the first slice on (D42, superseding D07); what stays in a
+later phase is producing the form itself.
 
 ---
 
@@ -93,7 +94,7 @@ later phase (high value, high error consequence); communicated in X as "coming s
 **Out of scope for MVP (later phases)**
 - Self-employed with real costs/expenses and presumptive costs (Resolution 532); capital income; non-labor income; dividends; complex occasional gains (inheritances).
 - OCR of individual certificates *(exógena parsing is NOT out of scope anymore — it moved to P2)*.
-- Login, persistence, AI-driven recommendations (tier Y).
+- Login, persistence of the user's figures, AI-driven recommendations (tier Y).
 - Wealth tax and advance tax payment — modeled but not prioritized in v0.
 - Third-party personal data handling (Law 1581): applies from Phase 2 onward.
 

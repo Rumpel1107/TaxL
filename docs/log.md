@@ -6,6 +6,36 @@
 > (`docs/roadmap.md`). No taxpayer figures — golden-test values stay in the local fixture,
 > never in this repository (`memory/constitution.md`, principle 3).
 
+## 2026-09-03 — The first slice gets a spec
+
+The interview the previous session left open was finished, and its conclusions are
+`docs/specs/manual-liquidation/spec.md` — the first spec this project has, and the reason
+`docs/specs/` exists (D39). Spec directories are named without a number: execution order already
+lives in the roadmap, and the topic-based numbering carried from the discovery sessions had already
+made the first spec to be written `003`. The handoff file that carried the interview between
+sessions was emptied into the spec and deleted.
+
+Four decisions came out of it. The slice runs as guest and never persists a fiscal figure; what it
+does store is the email a user consents to give when their case is not covered, and the report of
+which fields were not covered (D40). That report turned out to be the only mechanism the repository
+has for constitution principle 9, which grows coverage case by case without ever saying how those
+cases are learned (D41). The line-by-line detail carries each value's Form 210 box number (D42),
+superseding D07: the user copies the figures with the form open anyway, so hiding the box makes the
+result harder to verify rather than safer. The disclaimer that D07's deferral was protecting against
+is now an acceptance criterion, which pulls US-P2-003 out of the P2 epics.
+
+The slice also grew three things no earlier document had: more than one certificate per return, the
+user choosing among the three tax years — which the golden tests needed anyway — and both interface
+languages from the first version, with every user-facing string behind a key.
+
+Two roadmap entries closed by being answered rather than done: the M1 "key lines" question, fixed by
+the spec as every line of the general schedule and of the closing block, and the order of the three
+specs, fixed by building the engine first.
+
+Found while writing: two rows in `docs/decisions.md` carried the id D37 — two different decisions,
+one identifier — against the file's own rule that ids are never reused. The later row, the one that
+put code ahead of P0, became D43.
+
 ## 2026-09-02 — The registry learns what the rule sheets say
 
 Thirteen rule sheets existed and the registry marked one of them closed. The status column was

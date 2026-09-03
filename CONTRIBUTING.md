@@ -13,12 +13,18 @@ here.
 | `docs/roadmap.md` | What is pending. One line per item, in execution order. **Read this first** |
 | `docs/decisions.md` | Why something already settled was settled, with the rejected alternative |
 | `docs/log.md` | What happened, dated |
+| `docs/defects.md` | What broke after something was called done, one row each, keyed by the class of mistake |
+| `docs/specs/` | One folder per unit of work, holding what the system does as seen from outside |
 | `docs/domain/` | The tax rules the engine implements, with primary source and verification status |
 | `docs/reference/` | Verified normative research, and closed material kept as input for later specs |
 | `memory/constitution.md` | The principles this project does not negotiate |
 
 **When an item closes,** remove it from `docs/roadmap.md` and write the dated entry in
 `docs/log.md` in the same change.
+
+**When something breaks after it was called done** — in the engine, in a rule sheet, in a
+figure already used — its row goes in `docs/defects.md` in the same change that fixes it.
+The `/method` skill owns the format.
 
 ## Owner tags
 
