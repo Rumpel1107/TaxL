@@ -6,6 +6,29 @@
 > (`docs/roadmap.md`). No taxpayer figures — golden-test values stay in the local fixture,
 > never in this repository (`memory/constitution.md`, principle 3).
 
+## 2026-09-03 — The stack is chosen
+
+Java 21 with Spring Boot for the engine and its API, React with TypeScript for the interface,
+user-facing text in per-language key files, and a database holding only consented emails and
+out-of-scope reports (D44). The rejected alternative was running the engine in the browser with no
+server at all, which fits this slice better on its own terms — the figures would never leave the
+device and there would be one thing to deploy — but the paid tier needs a server for accounts,
+payment and exógena, so that engine would be rewritten within months, and the engine is the one
+piece that must not be rewritten.
+
+What decided the language was not how fast it is to write. The owner will not be typing this code,
+so what counts is how cheaply it can be verified by reading: strict types, and decimal arithmetic
+that is exact by default in a calculation that has to match to the peso.
+
+The cost is explicit. The user's figures now travel to a server even though nothing is stored, so
+"nothing is kept" has to hold for the server's logs too — verified, not promised.
+
+Item 2's other half closed the same day. A running UI is inspected and evidenced with Playwright
+(D45): it drives a real browser while the work is being built, and it leaves the acceptance criteria
+as end-to-end tests that re-run on every change. The owner's own look at the screen stays as the
+closing check of each slice, never as the only mechanism — the engine's tests cannot see a broken
+screen.
+
 ## 2026-09-03 — The first slice gets a spec
 
 The interview the previous session left open was finished, and its conclusions are

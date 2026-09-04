@@ -42,9 +42,17 @@ Form 210 it produces, each carrying its box number and the article behind it.
    box X"). The user transcribes documents, not concepts. More than one certificate is supported:
    the user adds each document and the system sums them. The user never sums by hand.
 5. **Result.** Balance due or refund, in plain language, with how it was reached.
-6. **Detail view**, optional: every line of the general schedule and of the closing block, including
+6. **Decisions on the result.** Where the law leaves the choice to the taxpayer, both outcomes are
+   resolved and shown with their figures, and the user picks which one applies; the result updates
+   to the chosen one. Two such choices exist in this slice: costs and expenses versus the 25%
+   exemption on fees income (R4), and the base of the advance payment (R9). Each is offered only
+   when it applies — the advance choice from the third return onwards, the fees choice only when
+   there is fees income. The advance carries a third option, a **value typed by the user or their
+   accountant**: real returns carry advance amounts that neither lawful base reproduces, which is
+   R9's open flag, and the engine takes the figure rather than inferring it.
+7. **Detail view**, optional: every line of the general schedule and of the closing block, including
    the ones that come out at zero, each with its Form 210 box number.
-7. **Per value**, on demand: how that number was computed and the article that supports it.
+8. **Per value**, on demand: how that number was computed and the article that supports it.
 
 ## Failure states
 
@@ -62,7 +70,8 @@ Form 210 it produces, each carrying its box number and the article behind it.
   threshold, and the flow does not continue.
 - **AC2 — Correct liquidation.** Given an in-scope employee, when they liquidate, then every line of
   the general schedule and of the closing block matches the reference return for that tax year to
-  the peso. Those lines are what M1 measures.
+  the peso. Those lines are what M1 measures. Where a taxpayer choice was available, the test states
+  which one the reference return used; without that, "matches to the peso" means nothing.
 - **AC3 — Result visible.** Given a completed liquidation, then the user sees balance due or refund
   in plain language, and can open the line-by-line detail carrying each value's Form 210 box number.
 - **AC4 — Traceability.** Given any displayed value, when the user opens it, then they see how it
@@ -82,6 +91,10 @@ Form 210 it produces, each carrying its box number and the article behind it.
   warned they will lose what they typed.
 - **AC11 — Disclaimer.** The result is presented as educational, carries no liability, and is not
   the official return.
+- **AC13 — Taxpayer choices.** Given a case where the law leaves the choice to the taxpayer, when
+  the result is shown, then each option appears with the figure it produces, the user picks one, and
+  the liquidation follows the choice. The engine never picks for them. For the advance payment the
+  user may instead type their own figure, and the liquidation follows it.
 - **AC12 — Language.** Given the user picks English or Spanish, then every user-facing text appears
   in that language. No text is hardcoded in either one.
 
@@ -103,7 +116,7 @@ Guest only, no accounts.
 | 1 | Accounts and persistence of the user's figures | deferred | They make no sense before the tool can charge. That is the moment to revisit Law 1581 (PLAN risk R-6) and the free tier |
 | 2 | Exógena upload as the entry point | deferred | Evaluated once the engine works, together with the one or two non-accounting questions that would replace the transcription |
 | 3 | The exact wording of the disclaimer (AC11) | deferred | Gated on the legal-boundary research item, which also gates the tier X copy |
-| 4 | R4 — art. 206 par. 5 extends the 25% exemption to professional fees, and the slice's scope includes an employee with fees income opting for it | deferred | Owned by the rule-flags roadmap item. It blocks building the fees path, not writing this spec |
+| 4 | R4 — art. 206 par. 5 extends the 25% exemption to professional fees, and the slice's scope includes an employee with fees income opting for it | resolved | The rule sheet now carries it: one exemption, not two; each sub-schedule depurated on its own; the 790 UVT cap over the sum of both; and the taxpayer's exclusive choice between costs and the 25% (art. 336 num. 4), which AC13 puts on the result screen |
 | 5 | Does this slice ship both interface languages, or only one with the mechanism in place? | resolved | Both, English and Spanish, from the first slice, with every user-facing string behind a key and the language selectable by the user |
 
 ---

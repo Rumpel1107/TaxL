@@ -48,6 +48,6 @@ rewritten or anonymised (constitution principle 11).
 
 ## Dev setup
 
-There is no stack yet — choosing it is an open item in `docs/roadmap.md`. Nothing in this
-repository is runnable today. How to install, run and test goes in this section once the
-stack is decided.
+The stack is D44: Java 21 with Spring Boot for the engine and its API, React with TypeScript
+for the interface. Nothing in this repository is runnable yet — how to install, run and test
+goes in this section as soon as the first slice is scaffolded.
