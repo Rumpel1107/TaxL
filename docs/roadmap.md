@@ -30,7 +30,7 @@ is specified in `docs/specs/manual-liquidation/` and its stack is D44; no code e
 
 | # | Item | Tag |
 |---|---|---|
-| 6 | Fill in the Dev setup section of `CONTRIBUTING.md` once the project is scaffolded | `[A]` |
+| 6 | Fill in the Dev setup section of `CONTRIBUTING.md` once the project is scaffolded, including the CI that runs the suite on every push — a gate nobody has to remember | `[A]` |
 | 7 | Decide whether a board is needed on top of `/method`, or whether this file is the board | `[R]` |
 | 8 | Research the legal boundary between "estimation tool" and "tax advisory" — gates tier Y and the disclaimer of AC11 | `[R]` |
 | 9 | Delete `docs/context/` once the app reproduces the reference returns without it — D33 | `[R]` |
