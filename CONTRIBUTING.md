@@ -48,6 +48,8 @@ rewritten or anonymised (constitution principle 11).
 
 ## Dev setup
 
-The stack is D44: Java 21 with Spring Boot for the engine and its API, React with TypeScript
-for the interface. Nothing in this repository is runnable yet — how to install, run and test
-goes in this section as soon as the first slice is scaffolded.
+The stack is D47: Java 21 with Spring Boot for the engine and its API, React with TypeScript
+for the interface, and a database holding the legal parameters of each tax year, the consented
+emails and the out-of-scope reports. The engine itself is plain Java and depends on none of that
+(D51). Nothing in this repository is runnable yet — how to install, run and test goes in this
+section as soon as the skeleton of slice zero is scaffolded.

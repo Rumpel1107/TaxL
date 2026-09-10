@@ -32,7 +32,9 @@ Form 210 it produces, each carrying its box number and the article behind it.
 ## User flow
 
 1. **Entry screen.** Which documents are needed, how long the flow takes, what to expect from it,
-   and that nothing is saved. It also serves whoever lands on the page by mistake.
+   and what happens to what they type: nothing of it reaches the system's storage, it stays in their
+   own tab while they work, and closing the tab loses it. It also serves whoever lands on the page by
+   mistake.
 2. **Tax year.** The user picks 2023, 2024 or 2025. Every parameter follows that choice.
 3. **Obligation gate.** With the main figures in, the five thresholds resolve. If not obliged, the
    answer is positive and complete — the thresholds for that year, the user's totals against them,
@@ -60,8 +62,8 @@ Form 210 it produces, each carrying its box number and the article behind it.
 |---|---|---|---|
 | Out of scope | On liquidate, a concept or income type the engine does not cover | A notice naming which fields are not covered, and **no figure at all** | Consent to give an email, so support tells them when their case is covered; or leave |
 | Missing or malformed field | A required field empty, or a value that is not a figure, as they type | The field flagged with what is missing | Fix it; they cannot move on until it is fixed |
-| Values that contradict each other | On liquidate, two values that do not reconcile | The difference and both sources | Decide which one stands — the system never picks a side |
-| Session loss | An attempt to leave or reload mid-flow | A warning that what was typed will be lost, since nothing is saved | Confirm and lose it, or stay |
+| Session loss | An attempt to close the tab mid-flow | A warning that closing it loses what was typed, since it lives in the tab and nowhere else | Confirm and lose it, or stay |
+| Report already registered | An out-of-scope report whose email and uncovered fields are both already on record | A notice that their case is already registered, with no new entry created | Leave, or start again with a different case |
 
 ## Acceptance criteria
 
@@ -81,14 +83,13 @@ Form 210 it produces, each carrying its box number and the article behind it.
   tell them when their case is covered.
 - **AC6 — Missing or malformed field.** Given a required field empty or malformed, when the user
   tries to move on, then they cannot, and they see what is missing.
-- **AC7 — Contradicting values.** Given two values that do not reconcile, when they liquidate, then
-  the difference is shown and the user decides; the system never picks a side.
 - **AC8 — Several certificates.** Given more than one certificate, when they are added, then the
   system sums them and every value stays traceable to its own document.
 - **AC9 — Tax year.** Given one of the three years is chosen, then every parameter follows it and no
   value from another year leaks in.
-- **AC10 — Session.** Given nothing is stored, when the user tries to leave or reload, then they are
-  warned they will lose what they typed.
+- **AC10 — Session.** Given what the user typed is held in their own tab and nowhere else, when they
+  reload, then it is still there; when they try to close the tab, then they are warned that closing
+  it loses everything.
 - **AC11 — Disclaimer.** The result is presented as educational, carries no liability, and is not
   the official return.
 - **AC13 — Taxpayer choices.** Given a case where the law leaves the choice to the taxpayer, when
@@ -97,6 +98,54 @@ Form 210 it produces, each carrying its box number and the article behind it.
   user may instead type their own figure, and the liquidation follows it.
 - **AC12 — Language.** Given the user picks English or Spanish, then every user-facing text appears
   in that language. No text is hardcoded in either one.
+- **AC14 — Validation on the server.** Given a request that reaches the API without passing through
+  the screen, when a value is of the wrong type or outside the accepted range, then the server
+  rejects it without calculating and produces no partial result.
+- **AC15 — Call limit.** Given repeated calls from one origin above the configured limit, when the
+  limit is passed, then further calls are refused. It covers the liquidation and the out-of-scope
+  form alike.
+- **AC16 — Nothing of the user in the logs.** Given a failure while a liquidation runs, when the
+  logs and the error response are inspected, then no fiscal figure of the user appears in either and
+  no request body is dumped. Verified by provoking a failure on purpose, not by reading the code.
+- **AC17 — Email format.** Given the email at the out-of-scope notice, when it is not a valid
+  address, then the server rejects it.
+- **AC18 — Consent on record.** Given an email is stored, then the explicit consent that allowed it
+  is stored beside it, with its date.
+- **AC19 — Report already registered.** Given an out-of-scope report whose email and uncovered
+  fields are both already on record, when it is submitted, then no new entry is created, the date of
+  the last attempt is updated, and the user is told their case is already registered. A different
+  set of fields is always a new entry.
+- **AC20 — Report state.** Given a stored report, then it carries one of three states — pending,
+  covered, notified — and coverage work is prioritized from them.
+- **AC21 — The server writes the report.** Given a liquidation the engine does not cover, then the
+  server determines which fields are uncovered and names them from a closed list the project
+  defines. Nothing the browser sends is stored as text.
+- **AC22 — Encrypted transport.** Given the deployed service, when a request arrives unencrypted,
+  then it is refused rather than answered. Verified on the deployment, never on the development
+  machine.
+- **AC23 — Privacy notice.** Given the point where the email is asked for, then the user is told
+  what is stored, what it is used for, how long it is kept and how to ask for its deletion, with a
+  channel that answers such a request. The email is kept until their case is covered and they have
+  been told, or until they ask for its deletion — whichever comes first.
+
+## Abuse cases
+
+Beside the failure states, which are a user getting it wrong. These are what someone does on
+purpose, at each point where data nobody here wrote crosses in.
+
+| Where data crosses in | What someone does on purpose | Answered by |
+|---|---|---|
+| The transcribed figures | Calls the API directly with values that are not figures, or absurd ones, skipping the screen's validation | AC14 |
+| The transcribed figures | Calls the liquidation in a loop to exhaust the server and the budget | AC15 |
+| The consented email | Writes arbitrary text instead of an address, to put content into the only list the project reads to decide coverage | AC17 |
+| The consented email | Floods the form to fill the table with junk | AC15, AC19 |
+| The out-of-scope report | Sends the list of uncovered fields from the browser, writing free text — or a fiscal figure — into the stored report | AC21 |
+| The connection | Reads the figures in transit on a shared network | AC22 |
+
+**Accepted risk.** Someone enters a third party's email, who consented to nothing and receives the
+support notice. No control proportional to this slice answers it: there is no account to prove who
+is who, and a confirmation email is the notification capability this slice does not have. Accepted
+knowingly, revisited when that capability exists.
 
 ## What is stored
 
@@ -104,10 +153,13 @@ Guest only, no accounts.
 
 - **Never stored:** the user's fiscal figures, and no documents. Nothing is persisted until its
   custody can be guaranteed.
-- **Stored:** the email the user explicitly consents to give at the out-of-scope notice, and the
-  report of which fields were not covered — the field, never the value. That report is how coverage
-  gets prioritized case by case, which is what constitution principle 9 requires and no document
-  described until now.
+- **Stored:** the email the user explicitly consents to give at the out-of-scope notice, together
+  with that consent and its date; and the report of which fields were not covered — the field, never
+  the value — carrying its state. That report is how coverage gets prioritized case by case, which
+  is what constitution principle 9 requires and no document described until now.
+- **Also in the database, written by nobody using the product:** the legal parameters of each tax
+  year. They are configuration, not anyone's data, and until the admin panel exists the only thing
+  that writes them is the repository's initial load.
 
 ## Open questions
 
@@ -118,6 +170,7 @@ Guest only, no accounts.
 | 3 | The exact wording of the disclaimer (AC11) | deferred | Gated on the legal-boundary research item, which also gates the tier X copy |
 | 4 | R4 — art. 206 par. 5 extends the 25% exemption to professional fees, and the slice's scope includes an employee with fees income opting for it | resolved | The rule sheet now carries it: one exemption, not two; each sub-schedule depurated on its own; the 790 UVT cap over the sum of both; and the taxpayer's exclusive choice between costs and the 25% (art. 336 num. 4), which AC13 puts on the result screen |
 | 5 | Does this slice ship both interface languages, or only one with the mechanism in place? | resolved | Both, English and Spanish, from the first slice, with every user-facing string behind a key and the language selectable by the user |
+| 6 | The exact wording of the privacy notice (AC23) | deferred | Gated on the same legal-boundary research as the disclaimer. What it must say is decided: what is stored, what for, the retention rule of AC23, and how to ask for deletion |
 
 ---
 
@@ -125,6 +178,7 @@ Guest only, no accounts.
 
 - [x] Acceptance criteria in Given/When/Then form
 - [x] Failure states enumerated, not implied
+- [x] Every place outside data enters has an abuse case, written as an acceptance criterion
 - [x] Every open question resolved or explicitly deferred
 - [x] No technical decisions leaked into this document
 - [x] No `[NEEDS CLARIFICATION]` marker is left unresolved

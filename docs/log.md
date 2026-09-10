@@ -6,6 +6,48 @@
 > (`docs/roadmap.md`). No taxpayer figures — golden-test values stay in the local fixture,
 > never in this repository (`memory/constitution.md`, principle 3).
 
+## 2026-09-10 — The first slice is designed, and its abuse cases written
+
+Phase 3 closed for `docs/specs/manual-liquidation/`: every acceptance criterion has a home, in
+`plan.md` beside the spec.
+
+The design phase opened on a gap the spec had left. Failure states were enumerated; abuse cases were
+not, so the gate asking that every one of them be answered by a control could not close. Writing
+them found three places where data nobody here wrote crosses in — the transcribed figures, the
+consented email, the out-of-scope report — and each is now an acceptance criterion, AC14 to AC22.
+Two of them exist only because the API can be called without passing through the screen at all.
+
+The line that matters most in the design is where the engine ends. It is plain Java, inside the same
+project, and depends on nothing around it (D51): it receives the case and the year's parameters
+already read, and returns the liquidation with each line carrying its Form 210 box, its article and
+the inputs it came from (D52). What that buys is not elegance — it is hundreds of test cases running
+in seconds without a server, which is what keeps the suite the constitution calls inviolable from
+being switched off. The same reasoning corrected D45's scope: not every criterion is verified
+through a browser (D54).
+
+The legal parameters moved into the database (D47), because the professional who answers for their
+accuracy has to be able to change them without touching the repository. Their change history is
+deferred (D48): while the repository's initial load is the only writer, git already is that history.
+The admin panel that makes the history necessary is the last item on the roadmap.
+
+Two contradictions surfaced from reading the documents against each other. `PLAN.md` counted four
+obligation thresholds where there are five, in the law and in the exógena summary alike. And it
+placed Law 1581 in P2 while this slice already stores a consented email, which is a third party's
+personal data — so R-6's trigger was already met, and the minimum notice now ships with the slice
+(D57).
+
+AC7, two values that contradict each other, left the slice. It was written as if this slice could
+meet it, and it cannot: it is born of crossing the exógena against the user's own documents, and
+here there is one source per fact. The owner caught that; three messages had already treated it as
+buildable.
+
+What the user types now survives a reload, in the tab's own memory and nowhere else (D55). The
+rejected alternative — the browser's persistent memory, cleared on submit — protects whoever
+finishes and leaves the figures of whoever abandons halfway on a possibly shared machine.
+
+Slice zero was added ahead of everything (D50): the skeleton deployed on the owner's server over
+HTTPS, before there is an engine to put on top of it.
+
 ## 2026-09-03 — The stack is chosen
 
 Java 21 with Spring Boot for the engine and its API, React with TypeScript for the interface,

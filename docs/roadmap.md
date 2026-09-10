@@ -14,39 +14,43 @@
 
 The Excel engine is complete and reproduces the three reference returns to the peso. **M1** and
 **M3** are met; **M2 is unverified** and **M5 has not been run**. P0 is not closed. The first slice
-is specified in `docs/specs/manual-liquidation/` and its stack is D44; no code exists yet.
+is specified and designed in `docs/specs/manual-liquidation/` — phases 2 and 3 closed — and its
+stack is D47; no code exists yet.
 
 ## Now
 
 | # | Item | Tag | Blocks |
 |---|---|---|---|
 | 1 | Resolve or accept in writing the nine open flags on the rule sheets (R3–R6, R8, R9, R10, R15, R16) — US-P0-000 | `[R]` | closing P0 |
-| 2 | Build the first vertical slice, specified in `docs/specs/manual-liquidation/` — guest only, no exógena, no accounts, no fiscal figure stored, with the three reference returns as golden tests | `[R+A]` | everything testable |
-| 3 | Verify M2: confirm the webinar's worked examples are reproduced | `[R]` | closing P0 |
-| 4 | Run the M5 willingness-to-pay probe with ≥3 people — US-P0-009 | `[R]` | the P2 go/no-go |
-| 5 | Run the manual PoC: liquidate 5 real employee cases with the Excel, free, participants' documents deleted on delivery — the deliverable is the list of scenarios the engine does not cover | `[R]` | the beta scope |
+| 2 | Build slice zero: the end-to-end skeleton deployed on the owner's server and served over HTTPS, no engine in it — D50 | `[A]` | the first slice |
+| 3 | Build the first vertical slice, specified in `docs/specs/manual-liquidation/` — guest only, no exógena, no accounts, no fiscal figure stored, with the three reference returns as golden tests | `[R+A]` | everything testable |
+| 4 | Verify M2: confirm the webinar's worked examples are reproduced | `[R]` | closing P0 |
+| 5 | Run the M5 willingness-to-pay probe with ≥3 people — US-P0-009 | `[R]` | the P2 go/no-go |
+| 6 | Run the manual PoC: liquidate 5 real employee cases with the Excel, free, participants' documents deleted on delivery — the deliverable is the list of scenarios the engine does not cover | `[R]` | the beta scope |
 
 ## Next, once P0 closes
 
 | # | Item | Tag |
 |---|---|---|
-| 6 | Fill in the Dev setup section of `CONTRIBUTING.md` once the project is scaffolded, including the CI that runs the suite on every push — a gate nobody has to remember | `[A]` |
-| 7 | Decide whether a board is needed on top of `/method`, or whether this file is the board | `[R]` |
-| 8 | Research the legal boundary between "estimation tool" and "tax advisory" — gates tier Y and the disclaimer of AC11 | `[R]` |
-| 9 | Delete `docs/context/` once the app reproduces the reference returns without it — D33 | `[R]` |
+| 7 | Fill in the Dev setup section of `CONTRIBUTING.md` once the project is scaffolded, including the CI that runs the suite on every push against the invented reference case — a gate nobody has to remember (D49) | `[A]` |
+| 8 | Decide whether a board is needed on top of `/method`, or whether this file is the board | `[R]` |
+| 9 | Research the legal boundary between "estimation tool" and "tax advisory" — gates tier Y and the disclaimer of AC11 | `[R]` |
+| 10 | Delete `docs/context/` once the app reproduces the reference returns without it — D33 | `[R]` |
+| 11 | Notify by email the users whose case became covered: provider, template in both languages, what happens when the send fails, and the unsubscribe link Law 1581 will require — until it exists the notice is sent by hand and the report's state is moved by hand (AC20) | `[R+A]` |
+| 12 | Build the admin panel: login, the owner and the legal professional as its two users, and the change history of the legal parameters that D48 defers to it. **Last, low priority** — until then the parameters are loaded from the repository | `[R+A]` |
 
 ## Cheap and parallel, no blocker
 
 | # | Item | Tag |
 |---|---|---|
-| 10 | Collect real exógena↔return pairs, framed as "experiment, no commitment" — they are the only test material for R11–R14, and they never enter the repository (D31) | `[R]` |
+| 13 | Collect real exógena↔return pairs, framed as "experiment, no commitment" — they are the only test material for R11–R14, and they never enter the repository (D31) | `[R]` |
 
 ## Open questions carried from the plan
 
 | # | Question | Tag |
 |---|---|---|
-| 11 | Define a measurable North Star Metric for when real users exist | `[R]` |
-| 12 | Set the price anchor in COP for tier X, before the M5 probe asks about a concrete number | `[R]` |
+| 14 | Define a measurable North Star Metric for when real users exist | `[R]` |
+| 15 | Set the price anchor in COP for tier X, before the M5 probe asks about a concrete number | `[R]` |
 
 ## Later epics
 
@@ -56,7 +60,7 @@ Epic-level, to be broken into slices when reached. Carried from `PLAN.md` §8.
 - **US-P1-002** — Self-employed: compare the 3 scenarios (real costs / 25% exempt / presumptive).
 - **US-P2-001** — Login tied to userId; resume later.
 - **US-P2-002** — Menu routing: DIAN validator or simulator.
-- **US-P2-004** — Upload exógena file (with curated download guide) → parse, depurate (R11–R14), extract the 4 thresholds and breakdown → free-tier conservative estimate + deadline + applicable rules.
+- **US-P2-004** — Upload exógena file (with curated download guide) → parse, depurate (R11–R14), extract the 5 thresholds and breakdown → free-tier conservative estimate + deadline + applicable rules. It also carries the reconciliation criterion that left the manual-liquidation slice (D56): two values that contradict each other are shown with both sources, and the user decides.
 - **US-P2-005** — Tier X purchase flow: full liquidation + deduction validation + normative breakdown + documents checklist.
 - **US-P3-001** — Upload certificates one at a time with fail-fast validation (OCR).
 - **US-P4-001** — Field-level tooltips and AI alerts; tier Y recommendations, gated on the legal-boundary item.

@@ -7,7 +7,7 @@
 > (`docs/log.md`), the tax rules (`docs/domain/`). Process — phases and gates — is the `/method`
 > skill.
 >
-> Owner: Rumpel · Last updated: 2026-09-03
+> Owner: Rumpel · Last updated: 2026-09-10
 
 ---
 
@@ -85,7 +85,7 @@ later phase is producing the form itself.
 **In scope for MVP (Phase 0)**
 - **Employee** profile (with or without freelance / professional fees income opting for the 25% exempt income benefit).
 - General schedule → labor income sub-schedule.
-- Filing-obligation determination via the 4 thresholds.
+- Filing-obligation determination via the 5 thresholds: income, net worth, credit-card spending, bank movements, purchases.
 - Tax liability calculation (Art. 241 table).
 - Net worth comparison.
 - Output mapped to Form 210 lines.
@@ -96,7 +96,7 @@ later phase is producing the form itself.
 - OCR of individual certificates *(exógena parsing is NOT out of scope anymore — it moved to P2)*.
 - Login, persistence of the user's figures, AI-driven recommendations (tier Y).
 - Wealth tax and advance tax payment — modeled but not prioritized in v0.
-- Third-party personal data handling (Law 1581): applies from Phase 2 onward.
+- Third-party personal data handling (Law 1581) beyond the consented email: the first slice already stores one, so the minimum notice applies from it (D57); what accounts and payment add is revisited when they exist.
 
 ---
 
@@ -113,7 +113,7 @@ later phase is producing the form itself.
 **Cross-cutting principles (apply to all phases):**
 1. **The engine is deterministic.** AI never calculates the tax; it only extracts documents, explains, and recommends.
 2. **Everything is parameterized by tax year.** Parameter *values* are data, never hardcoded — and every value requires its rule sheet (`docs/domain/rules.md`) before being trusted, regardless of source.
-3. **The "exógena" report is the gold-standard input** (Excel file, includes the 4-threshold summary) — and the **product's entry point**, not a later enhancement.
+3. **The "exógena" report is the gold-standard input** (Excel file, includes the 5-threshold summary) — and the **product's entry point**, not a later enhancement.
 4. **Educational / pre-check positioning**, always with a disclaimer and a recommendation to seek professional validation.
 
 ---
@@ -129,7 +129,7 @@ later phase is producing the form itself.
 | R-3 | **Regulatory changes** | High | Medium | Everything parameterized by year; isolated Parameters sheet | New reform / decree |
 | R-4 | **Delegating the calculation to AI** | Medium | High | Hard rule: deterministic engine; AI only extracts/explains | Someone proposes "let the LLM calculate it" |
 | R-5 | **Exógena depuration fails (false income)** | High | High | R11–R14 rule sheets calibrated against real exógena↔declaration pairs; conservative framing; show ranges when ambiguous; manual correction always available | Free estimate deviates grossly from a known real return |
-| R-6 | **Third-party personal data (Law 1581)** | Medium | High | Consent/security designed from P2; educational positioning | First user other than myself |
+| R-6 | **Third-party personal data (Law 1581)** | Medium | High | Consent, privacy notice and deletion channel from the first slice (D57); educational positioning | Met: the first user other than the owner who consents to give an email |
 | R-7 | **TY2025 exógena not yet available (~July)** | High | Low | Work P0 with 2024 data / own past returns | Calendar |
 | R-8 | **Over-engineering the methodology** | Medium | Medium | Lightweight Kanban; weekly review; no heavy ceremonies | The board stops being updated |
 | R-9 | **Legal boundary: "estimation tool" vs "tax advisory"** *(new)* | Medium | High | Research before charging (blocks tier Y; informs X disclaimer) | Drafting the X paywall copy |
@@ -142,7 +142,7 @@ later phase is producing the form itself.
 - **UVT** (Unidad de Valor Tributario): Colombia's Tax Value Unit (2025: 49,799 COP — pending rule sheet). Converts thresholds into pesos.
 - **INCRNGO**: Non-taxable income (Ingreso No Constitutivo de Renta ni Ganancia Ocasional).
 - **General schedule** (cédula general): groups labor, capital, and non-labor income.
-- **Exógena**: third-party information reported to the DIAN; includes the 4-threshold summary. It is the product's entry point.
+- **Exógena**: third-party information reported to the DIAN; includes the 5-threshold summary. It is the product's entry point.
 - **Suggested return** (declaración sugerida): DIAN's pre-filled form based on exógena; taxpayer remains responsible.
 - **Form 210**: income tax return for resident individual taxpayers.
 - **Net worth comparison** (comparación patrimonial): DIAN's control over year-over-year net worth growth.
