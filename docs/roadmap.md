@@ -15,14 +15,15 @@
 The Excel engine is complete and reproduces the three reference returns to the peso. **M1** and
 **M3** are met; **M2 is unverified** and **M5 has not been run**. P0 is not closed. The first slice
 is specified and designed in `docs/specs/manual-liquidation/` — phases 2 and 3 closed — and its
-stack is D47; no code exists yet.
+stack is D47. Slice zero is cut in `docs/specs/slice-zero/tasks.md` (phase 4 closed 2026-09-13);
+no code exists yet.
 
 ## Now
 
 | # | Item | Tag | Blocks |
 |---|---|---|---|
 | 1 | Resolve or accept in writing the nine open flags on the rule sheets (R3–R6, R8, R9, R10, R15, R16) — US-P0-000 | `[R]` | closing P0 |
-| 2 | Build slice zero: the end-to-end skeleton deployed on the owner's server and served over HTTPS, no engine in it — D50 | `[A]` | the first slice |
+| 2 | Build slice zero, cut in `docs/specs/slice-zero/tasks.md`: the end-to-end skeleton deployed on the VPS and served over HTTPS, no engine in it — D50, D58–D62 | `[A]` | the first slice |
 | 3 | Build the first vertical slice, specified in `docs/specs/manual-liquidation/` — guest only, no exógena, no accounts, no fiscal figure stored, with the three reference returns as golden tests | `[R+A]` | everything testable |
 | 4 | Verify M2: confirm the webinar's worked examples are reproduced | `[R]` | closing P0 |
 | 5 | Run the M5 willingness-to-pay probe with ≥3 people — US-P0-009 | `[R]` | the P2 go/no-go |
