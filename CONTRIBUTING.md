@@ -51,5 +51,29 @@ rewritten or anonymised (constitution principle 11).
 The stack is D47: Java 21 with Spring Boot for the engine and its API, React with TypeScript
 for the interface, and a database holding the legal parameters of each tax year, the consented
 emails and the out-of-scope reports. The engine itself is plain Java and depends on none of that
-(D51). Nothing in this repository is runnable yet — how to install, run and test goes in this
-section as soon as the skeleton of slice zero is scaffolded.
+(D51).
+
+**The only tool needed on a machine is Docker** (with Compose). Java, Maven and Node live inside
+the images (D61); nothing is installed on the host, here or on the server.
+
+Layout: `backend/` is the Maven project of the API, `compose.yml` at the root describes the
+services (D62). The build context is the repository root — `.dockerignore` is an allow-list, so
+`docs/context/` and `data/` never enter an image.
+
+**Build, test and run**
+
+```
+docker compose up --build -d      # builds the image (the tests run inside the build) and starts it
+curl localhost:8080/api/status    # → {"version":"<git tag or commit>"}
+docker compose down               # stops it
+```
+
+A failing test fails the build, so a broken image is never started. To see the test report, run
+the build alone: `docker build -f backend/Dockerfile .` and read the Maven output.
+
+**The version** the API reports is `git describe --tags --always`, read from the clone during the
+build and injected into the Maven project as `-Drevision`. With no tag it is the commit hash;
+cutting a release is cutting a tag and rebuilding. Nothing is passed by hand.
+
+**On the server**, the same commands run in the clone after a `git pull`; the reverse proxy on
+the host is the only thing that reaches port 8080, published on `127.0.0.1` only (D60).

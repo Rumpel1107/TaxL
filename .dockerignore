@@ -1,0 +1,6 @@
+# Allow-list: only what the images need enters the build context.
+# docs/context/ and data/ are excluded by construction (constitution principle 11).
+*
+!.git
+!backend
+backend/target

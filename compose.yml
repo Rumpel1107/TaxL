@@ -1,0 +1,9 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    ports:
+      # Local only: the reverse proxy on the host is the only thing that reaches it (D60).
+      - "127.0.0.1:8080:8080"
+    restart: unless-stopped

@@ -6,6 +6,50 @@
 > (`docs/roadmap.md`). No taxpayer figures — golden-test values stay in the local fixture,
 > never in this repository (`memory/constitution.md`, principle 3).
 
+## 2026-09-14 — Slice zero, slice 1: the API builds and runs on the server
+
+The first code of the project: `backend/` as a Maven project on Spring Boot 4.1.1 and Java 21, one
+endpoint at `/api/status` that answers with the running version, a three-stage Dockerfile and a
+`compose.yml` with the API as its only service. Built and started on the VPS with Compose alone —
+no Java or Maven on the host (D61). The test went red for the intended reason first (`404` on the
+endpoint) and green once the controller existed.
+
+The version comes from the git tag, as the method asks, and nothing is passed by hand: the first
+stage of the Dockerfile reads `git describe --tags --always` from the clone and hands it to Maven as
+the project version. Reading the pom's own version was the rejected option — cheaper, but the pom
+and the tag would have to be kept aligned by hand. While there is no tag the endpoint shows the
+commit hash.
+
+The measurement this slice existed for: a cold build on the 4 GB VPS takes **59 s** and needs about
+**350 MB** above idle, with no swap touched. D61 stands; nothing reopens it.
+
+Kept out of the image by construction: `.dockerignore` is an allow-list holding only `backend/` and
+`.git`, so `docs/context/` and `data/` cannot enter a build. The port is published on `127.0.0.1`
+only, so until the reverse proxy serves it in slice 4 nothing outside the server reaches it.
+
+## 2026-09-13 — Slice zero is cut, and where it runs is decided
+
+Phase 4 closed for `docs/specs/slice-zero/tasks.md`: five slices in execution order, each with its
+verification. The API in Compose goes first because it is the one that can invalidate the others —
+if compiling Java inside a build on a 4 GB server is too slow or fails, D61 is reopened before
+anything sits on top of it. The reboot test goes last and is not a formality: the owner's home
+server already failed it once with another service.
+
+Cutting the slices forced the deployment choices the design had left open. The server is a rented
+VPS, not the home machine, because a page a stranger opens cannot ride a connection that drops
+several times a week; the site name lives only in the reverse proxy's configuration on the server,
+so a later commercial name is a rename and not a search (D58). PostgreSQL over SQLite, because the
+admin panel and any concurrent writer would force the migration later, and slice zero exists to meet
+that container while nothing sits on it (D59). API, interface and database as containers in one
+Compose file, with the reverse proxy native on the host — the opposite of how Tabris runs, and on
+purpose: Tabris is one process with no service dependency, where a container is a layer without a
+benefit (D60). Images built on the server from a `git pull` while there are no users; the move to CI
+is planned, not merely allowed, and is reopened by the first outside user or by the server choking
+on a build (D61). One repository, `backend/` and `frontend/` side by side, Maven (D62).
+
+The CI of D49 stays out of slice zero: its value arrives with the invented reference case, which is
+born with the engine. It remains roadmap item 7.
+
 ## 2026-09-10 — The first slice is designed, and its abuse cases written
 
 Phase 3 closed for `docs/specs/manual-liquidation/`: every acceptance criterion has a home, in
