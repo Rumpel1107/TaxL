@@ -13,7 +13,7 @@
 
   <groupId>taxl</groupId>
   <artifactId>taxl-api</artifactId>
-  <!-- The version is the git tag, injected by the Dockerfile as -Drevision (slice zero, B). -->
+  <!-- The version is the git tag, injected by the Dockerfile as -Drevision (D63). -->
   <version>${revision}</version>
   <name>TaxL API</name>
 

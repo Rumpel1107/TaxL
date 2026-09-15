@@ -21,7 +21,11 @@ and the tag would have to be kept aligned by hand. While there is no tag the end
 commit hash.
 
 The measurement this slice existed for: a cold build on the 4 GB VPS takes **59 s** and needs about
-**350 MB** above idle, with no swap touched. D61 stands; nothing reopens it.
+**350 MB** above idle, with no swap touched. D61 stands; nothing reopens it. How it was taken, so it
+can be retaken: `docker build --no-cache` with the three base images already on disk, so the time
+covers the dependency download, the compilation, the test and the packaging, not the image pulls;
+memory as the drop in `free -m`'s *available* column sampled once a second for the whole build
+(1.842 MB before, 1.490 MB at the lowest); swap read from the same command afterwards.
 
 Kept out of the image by construction: `.dockerignore` is an allow-list holding only `backend/` and
 `.git`, so `docs/context/` and `data/` cannot enter a build. The port is published on `127.0.0.1`
