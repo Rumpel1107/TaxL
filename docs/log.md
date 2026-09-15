@@ -6,6 +6,38 @@
 > (`docs/roadmap.md`). No taxpayer figures — golden-test values stay in the local fixture,
 > never in this repository (`memory/constitution.md`, principle 3).
 
+## 2026-09-15 — Slice 1 reviewed and closed; `v0.0.1`
+
+The first review under `tools/review.py`: three outside models on commit `060073e`, with the slice
+table as contract. Twenty-seven findings, thirteen distinct, read against the contract and the code.
+Five were corrected in one change — the test set its own version and so could not see the chain
+tag → build → endpoint, now checked literally in the Dockerfile; the base images floated on mutable
+tags against D60's own rationale, now pinned to their full version (both tags had already moved
+between one day's build and the next); the measurement was recorded without its method; a comment
+cited a name that resolved to nothing; four facts in *Dev setup* were wrong or missing. Two were
+deferred with a destination: a file edited in the server's clone without a commit would run under a
+clean version, closed by the move to CI (roadmap item 13); the health check goes to slice 2. Six were
+dismissed with a reason, the unticked *Done* box of `tasks.md` among them.
+
+The one round of correction the method allows re-ran on both commits; one reviewer's connection
+dropped mid-answer and the tool fell over instead of reporting it failed — a defect for the method,
+not for this project. The two reports that landed found seven things wrong with the corrections
+themselves and three that the first round had not seen. Corrected: the slice-2 clause promised that a
+health check restarts a hung container, which Docker alone does not do; the roadmap still said no
+code existed; the record did not say the corrected recipe had run (it had: a green build, and a build
+with `-Drevision` removed that the literal check stopped); the server's image prune was host-wide on
+a host that will serve other projects, now filtered to this one, with build cache and container logs
+capped beside it. Deferred: how the page reaches the API from the browser, to slice 3. The corrected
+recipe ran again and answers `v0.0.1-1-ga88adc3`.
+
+Tag `v0.0.1` is on `060073e`, the slice's commit; `v0.1.0` is reserved for the first thing a user
+can see (D63). Slice 1 is ✅.
+
+**Lesson:** the review sees the diff, not the project. A document the change does not touch is
+invisible to it, however stale — the roadmap said *no code exists yet* through two reviews because
+nothing had edited it. *Artifacts must agree* is the author's gate, and it has to run when the log
+entry is written, not when a reviewer stumbles on the file.
+
 ## 2026-09-14 — Slice zero, slice 1: the API builds and runs on the server
 
 The first code of the project: `backend/` as a Maven project on Spring Boot 4.1.1 and Java 21, one

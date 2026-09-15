@@ -7,3 +7,8 @@ services:
       # Local only: the reverse proxy on the host is the only thing that reaches it (D60).
       - "127.0.0.1:8080:8080"
     restart: unless-stopped
+    logging:
+      # Docker keeps container logs forever by default; cap them so the disk does not fill.
+      options:
+        max-size: "10m"
+        max-file: "3"

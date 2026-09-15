@@ -15,8 +15,10 @@
 The Excel engine is complete and reproduces the three reference returns to the peso. **M1** and
 **M3** are met; **M2 is unverified** and **M5 has not been run**. P0 is not closed. The first slice
 is specified and designed in `docs/specs/manual-liquidation/` — phases 2 and 3 closed — and its
-stack is D47. Slice zero is cut in `docs/specs/slice-zero/tasks.md` (phase 4 closed 2026-09-13);
-no code exists yet.
+stack is D47. Slice zero is cut in `docs/specs/slice-zero/tasks.md` (phase 4 closed 2026-09-13).
+Its slice 1 is built, reviewed and closed (2026-09-15): `backend/` and `compose.yml` exist, the API
+builds and runs on the VPS and answers its version at `/api/status`, tagged `v0.0.1`. Slices 2–5
+are pending.
 
 ## Now
 

@@ -74,11 +74,18 @@ the build alone with its output uncollapsed: `docker build --progress=plain -f b
 
 **The version** the API reports is `git describe --tags --always`, read from the clone during the
 build and injected into the Maven project as `-Drevision`; the build then checks literally that the
-packaged file carries that same version. With no tag it is the commit hash; cutting a release is
+filtered `application.properties` the jar is built from carries that same version. With no tag it is the commit hash; cutting a release is
 cutting a tag and rebuilding. Nothing is passed by hand. **The build needs a full clone with its
 tags**: it fails from an exported tree, and a CI checkout has to fetch the whole history.
 
-**On the server**, the same commands run in the clone after a `git pull`, followed by
-`docker image prune -f` — every rebuild leaves the previous image behind, about 300 MB each, on a
-40 GB disk. The reverse proxy on the host is the only thing that reaches port 8080, published on
-`127.0.0.1` only (D60).
+**On the server**, the same commands run in the clone after a `git pull`, followed by the cleanup
+that keeps a 40 GB disk from filling — every rebuild leaves the previous image (about 300 MB) and
+stale build cache behind:
+
+```
+docker image prune -f --filter label=com.docker.compose.project=taxl && docker builder prune -f
+```
+
+The filter keeps the prune to this project's images: the server hosts other services, and their
+leftovers are theirs. Container logs are capped in `compose.yml`. The reverse proxy on the host is
+the only thing that reaches port 8080, published on `127.0.0.1` only (D60).
