@@ -6,9 +6,49 @@ services:
     ports:
       # Local only: the reverse proxy on the host is the only thing that reaches it (D60).
       - "127.0.0.1:8080:8080"
+    depends_on:
+      - db
+    secrets:
+      - db_password
     restart: unless-stopped
+    healthcheck:
+      # The image has no curl; bash opens the socket itself. A signal only, no restart on it (D64).
+      test: ["CMD", "bash", "-c", "exec 3<>/dev/tcp/127.0.0.1/8080 && printf 'GET /api/status HTTP/1.0\\r\\n\\r\\n' >&3 && head -1 <&3 | grep -q 200"]
+      interval: 30s
+      timeout: 5s
+      start_period: 40s
     logging:
       # Docker keeps container logs forever by default; cap them so the disk does not fill.
       options:
         max-size: "10m"
         max-file: "3"
+
+  db:
+    image: postgres:18.4
+    environment:
+      POSTGRES_USER: taxl
+      POSTGRES_DB: taxl
+      # The password is read from the mounted file, never from an environment variable.
+      POSTGRES_PASSWORD_FILE: /run/secrets/db_password
+    volumes:
+      - db-data:/var/lib/postgresql
+    secrets:
+      - db_password
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U taxl -d taxl"]
+      interval: 30s
+      timeout: 5s
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  db-data:
+
+secrets:
+  # Lives outside the repository, owned by root in a 0700 directory, file mode 0644 so the
+  # unprivileged processes inside both containers can read their mounted copy.
+  db_password:
+    file: /etc/taxl/db_password

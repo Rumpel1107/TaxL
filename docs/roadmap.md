@@ -42,19 +42,20 @@ are pending.
 | 11 | Notify by email the users whose case became covered: provider, template in both languages, what happens when the send fails, and the unsubscribe link Law 1581 will require — until it exists the notice is sent by hand and the report's state is moved by hand (AC20) | `[R+A]` |
 | 12 | Build the admin panel: login, the owner and the legal professional as its two users, and the change history of the legal parameters that D48 defers to it. **Last, low priority** — until then the parameters are loaded from the repository | `[R+A]` |
 | 13 | Move the image build to CI when D61 reopens: the checkout fetches the full history and its tags (the version stage needs them), and the tree it builds from is clean by construction — which closes the gap the slice-1 review named, where a file edited in the server's clone without a commit would run under a clean version number | `[A]` |
+| 14 | Self-recovery of a container that is alive but not answering, before the first outside user (D64): choose between a watcher on the Docker socket and a host timer, with the privilege each one costs written down; verify by hanging the API on purpose and watching it come back with nobody touching it | `[A]` |
 
 ## Cheap and parallel, no blocker
 
 | # | Item | Tag |
 |---|---|---|
-| 14 | Collect real exógena↔return pairs, framed as "experiment, no commitment" — they are the only test material for R11–R14, and they never enter the repository (D31) | `[R]` |
+| 15 | Collect real exógena↔return pairs, framed as "experiment, no commitment" — they are the only test material for R11–R14, and they never enter the repository (D31) | `[R]` |
 
 ## Open questions carried from the plan
 
 | # | Question | Tag |
 |---|---|---|
-| 15 | Define a measurable North Star Metric for when real users exist | `[R]` |
-| 16 | Set the price anchor in COP for tier X, before the M5 probe asks about a concrete number | `[R]` |
+| 16 | Define a measurable North Star Metric for when real users exist | `[R]` |
+| 17 | Set the price anchor in COP for tier X, before the M5 probe asks about a concrete number | `[R]` |
 
 ## Later epics
 

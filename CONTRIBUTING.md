@@ -57,16 +57,33 @@ emails and the out-of-scope reports. The engine itself is plain Java and depends
 the images (D61); nothing is installed on the host, here or on the server.
 
 Layout: `backend/` is the Maven project of the API, `compose.yml` at the root describes the
-services (D62). The build context is the repository root — `.dockerignore` is an allow-list, so
-`docs/context/` and `data/` never enter an image.
+services — the API and its PostgreSQL database (D59, D62). The build context is the repository
+root — `.dockerignore` is an allow-list, so `docs/context/` and `data/` never enter an image.
+
+**Once per machine — the database password.** It is a file outside the repository that Compose
+mounts into both containers; it is never an environment variable, an argument or a log line. Root
+owns it, in a directory only root can enter; the file itself is world-readable because the
+unprivileged processes inside the containers read their mounted copy through that mode:
+
+```
+sudo mkdir -m 700 /etc/taxl && sudo sh -c 'openssl rand -base64 30 | tr -d "\n" > /etc/taxl/db_password' && sudo chmod 644 /etc/taxl/db_password
+```
+
+Nobody needs to read it. Changing it after the database has been created means recreating the
+volume (`docker compose down -v`): PostgreSQL only reads the password on its first start.
 
 **Build, test and run**
 
 ```
-docker compose up --build -d        # builds the image (the tests run inside the build) and starts it
-curl 127.0.0.1:8080/api/status      # → {"version":"<git tag or commit>"}
-docker compose down                 # stops it
+docker compose up --build -d        # builds the image (the tests run inside the build) and starts both services
+curl 127.0.0.1:8080/api/status      # → {"version":"<git tag or commit>","database":"reachable"}
+docker compose down                 # stops both; the data survives in the named volume
 ```
+
+The database is asked on every call to `/api/status`, so `"database":"unreachable"` means it is
+unreachable now. The API starts and answers without it. The tests use an in-memory database for
+the reachable case and a closed port for the unreachable one — the real PostgreSQL is exercised by
+running the application.
 
 A failing test fails the build, so a broken image is never started. To see the test report, run
 the build alone with its output uncollapsed: `docker build --progress=plain -f backend/Dockerfile .`

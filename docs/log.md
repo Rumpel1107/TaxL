@@ -6,6 +6,33 @@
 > (`docs/roadmap.md`). No taxpayer figures — golden-test values stay in the local fixture,
 > never in this repository (`memory/constitution.md`, principle 3).
 
+## 2026-09-16 — Slice zero, slice 2: the database is there and the API sees it
+
+PostgreSQL 18.4 as the second service of `compose.yml`, its data in a named volume, and
+`/api/status` now answers `"database":"reachable"` or `"unreachable"` after asking it on every
+call. The API starts without the database and stays up when it goes away: the connection pool is
+told not to fail at start and to give up on a connection after two seconds.
+
+The password follows the secret rule to the letter. It is a file, `/etc/taxl/db_password`, owned by
+root in a directory only root enters; Compose mounts it into both containers as
+`/run/secrets/db_password`, PostgreSQL reads it through `POSTGRES_PASSWORD_FILE`, and Spring reads
+the same mount as a configuration tree. Nothing else carries it. What the probe taught, before any
+of it was written: Compose mounts a file secret with the host file's own permissions and ignores the
+`mode` the Compose file declares, so a `0600` file is unreadable by the unprivileged users inside
+the containers. The arrangement is therefore a `0700` directory and a `0644` file — the directory
+protects it on the host, the mode lets the containers read their copy.
+
+Two tests went red for the intended reason (`No value at JSON path "$.database"`) and green: the
+reachable case against a real in-memory database, the unreachable one against a closed port with a
+250 ms timeout. Verified live, in both directions: with the database stopped the API answered
+`unreachable` without restarting; started again, it answered `reachable` about ten seconds later
+with nothing touched. A row written before `compose down` was read back after `compose up`. The
+password, read from inside the container and used only as a search term, appears in none of
+`compose.yml`, `docker inspect` of either container, the process list, or either container's logs.
+
+The health check exists as a signal (D64): the API image has no `curl`, so `bash` opens the socket
+itself. The health check of the API shows `healthy` within a minute of start.
+
 ## 2026-09-15 — Slice 1 reviewed and closed; `v0.0.1`
 
 The first review under `tools/review.py`: three outside models on commit `060073e`, with the slice

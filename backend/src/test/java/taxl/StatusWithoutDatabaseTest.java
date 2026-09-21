@@ -10,28 +10,23 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.test.web.servlet.MockMvc;
 
-/** The database behind these tests is a real in-memory one, so "reachable" is a real query. */
+/** Port 1 answers to nobody: the database is unreachable, and the API must start and say so. */
 @SpringBootTest(properties = {
         "taxl.version=1.2.3-test",
-        "spring.datasource.url=jdbc:h2:mem:status"
+        "spring.datasource.url=jdbc:postgresql://127.0.0.1:1/taxl",
+        "spring.datasource.hikari.connection-timeout=250"
 })
 @AutoConfigureMockMvc
-class StatusEndpointTest {
+class StatusWithoutDatabaseTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
-    void statusReportsTheRunningVersion() throws Exception {
+    void statusReportsTheDatabaseAsUnreachableAndStillAnswers() throws Exception {
         mockMvc.perform(get("/api/status"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.version").value("1.2.3-test"));
-    }
-
-    @Test
-    void statusReportsTheDatabaseAsReachable() throws Exception {
-        mockMvc.perform(get("/api/status"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.database").value("reachable"));
+                .andExpect(jsonPath("$.version").value("1.2.3-test"))
+                .andExpect(jsonPath("$.database").value("unreachable"));
     }
 }
