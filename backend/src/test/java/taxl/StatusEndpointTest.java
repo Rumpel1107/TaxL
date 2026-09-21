@@ -13,7 +13,8 @@ import org.springframework.test.web.servlet.MockMvc;
 /** The database behind these tests is a real in-memory one, so "reachable" is a real query. */
 @SpringBootTest(properties = {
         "taxl.version=1.2.3-test",
-        "spring.datasource.url=jdbc:h2:mem:status"
+        "spring.datasource.url=jdbc:h2:mem:status",
+        "db_password=unused-by-h2"
 })
 @AutoConfigureMockMvc
 class StatusEndpointTest {

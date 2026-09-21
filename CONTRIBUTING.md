@@ -66,11 +66,13 @@ owns it, in a directory only root can enter; the file itself is world-readable b
 unprivileged processes inside the containers read their mounted copy through that mode:
 
 ```
-sudo mkdir -m 700 /etc/taxl && sudo sh -c 'openssl rand -base64 30 | tr -d "\n" > /etc/taxl/db_password' && sudo chmod 644 /etc/taxl/db_password
+sudo mkdir -m 700 /etc/taxl && sudo sh -c 'openssl rand -base64 30 | tr -d "\n" > /etc/taxl/db_password' && sudo chmod 644 /etc/taxl/db_password && sudo test -s /etc/taxl/db_password && echo ok
 ```
 
-Nobody needs to read it. Changing it after the database has been created means recreating the
-volume (`docker compose down -v`): PostgreSQL only reads the password on its first start.
+The last step proves the file is not empty — a pipeline reports the exit status of its last
+command, so a failed `openssl` alone would not. Nobody needs to read it. Without the file the API
+refuses to start and says so. Changing it after the database has been created means recreating
+the volume (`docker compose down -v`): PostgreSQL only reads the password on its first start.
 
 **Build, test and run**
 

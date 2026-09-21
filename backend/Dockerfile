@@ -19,7 +19,8 @@ RUN mvn -B -Drevision="$(cat /version)" package
 # The test cannot see this chain (it sets its own version), so the packaged file is checked literally.
 RUN grep -qx "taxl.version=$(cat /version)" target/classes/application.properties
 
-# Stage 3 — only the runtime and the jar.
+# Stage 3 — only the runtime and the jar. The health check in compose.yml needs this image's bash;
+# a slimmer base without it would mark a working API unhealthy.
 FROM eclipse-temurin:21.0.12_8-jre
 RUN useradd --system --no-create-home taxl
 WORKDIR /app

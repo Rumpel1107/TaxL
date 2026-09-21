@@ -6,6 +6,40 @@
 > (`docs/roadmap.md`). No taxpayer figures — golden-test values stay in the local fixture,
 > never in this repository (`memory/constitution.md`, principle 3).
 
+## 2026-09-21 — Slice 2 reviewed and closed
+
+Three outside reviewers on `f681da2`, eighteen findings, eleven distinct. The one that mattered:
+the slice promised "unreachable, without the API dying" and delivered it only for a database that
+refuses connections. A database that is alive but silent — `docker pause` reproduces it — left
+every status call waiting forever, each one holding a thread. Corrected with bounded waits at
+every step the call passes through: pool slot, validation of a pooled connection, socket read,
+connection attempt. Also corrected: the swallowed exception now logs its cause (a stopped database
+and a rejected password were indistinguishable); the password property lost its empty default, so
+a missing secret stops the API at start instead of producing an empty password (principle 6); the
+setup command proves the secret file is not empty; a comment ties the health check to the image's
+`bash`.
+
+What the live measurement taught, and would not have been learnt from reading: the first fix
+answered in 12 s, not 2. Not the pool validating ten connections in turn, as first assumed and
+disproved by shrinking the pool — the query timeout set on the JDBC template made the driver open a
+*second* connection to cancel the query, and that connect waited its own default of 10 s against
+the paused server. Removed; the socket timeout is what bounds a read on a hung server, exactly as
+one reviewer had written. Result: 2 s per call, three calls in a row, recovery on its own when the
+database resumes.
+
+Deferred with a destination: the real PostgreSQL wiring is tested by the slice-3 Playwright
+assertion that the page shows `reachable`; a request-rate limit on `/api/*` goes to the reverse
+proxy in slice 4; a non-superuser role for the API goes with the first slice that creates tables.
+Dismissed with a reason: the two readers of the secret file agree on trailing newlines (Boot 4.1.1
+enables `AUTO_TRIM_TRAILING_NEW_LINE` on configtree imports — read in the source, not assumed);
+the API's health check reports the API and not the database on purpose, so a future restarter acts
+on the layer that failed; the password is readable inside the API container because the API needs
+it. D65 settled how the page reaches the API — one origin through the page's own server.
+
+**Lesson:** a timeout is measured, not configured. Two of three timeouts set from documentation
+did nothing for the case at hand, and the one that hurt was a *cancel* path no document mentioned;
+the number that told the truth was `time curl` against a paused container.
+
 ## 2026-09-16 — Slice zero, slice 2: the database is there and the API sees it
 
 PostgreSQL 18.4 as the second service of `compose.yml`, its data in a named volume, and

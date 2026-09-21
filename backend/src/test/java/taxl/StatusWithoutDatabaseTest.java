@@ -14,7 +14,8 @@ import org.springframework.test.web.servlet.MockMvc;
 @SpringBootTest(properties = {
         "taxl.version=1.2.3-test",
         "spring.datasource.url=jdbc:postgresql://127.0.0.1:1/taxl",
-        "spring.datasource.hikari.connection-timeout=250"
+        "spring.datasource.hikari.connection-timeout=250",
+        "db_password=nobody-listens-on-port-1"
 })
 @AutoConfigureMockMvc
 class StatusWithoutDatabaseTest {
